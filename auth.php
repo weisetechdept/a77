@@ -39,7 +39,7 @@
 			liff.init({ liffId: "1654391121-8wq4olb5" }, () => {
 				if (liff.isLoggedIn()) {
 						liff.getProfile().then(profile => {
-							axios.post('/loyalty/system/auth.php', {
+							axios.post('/sales/system/auth.php', {
 								userId: profile.userId,
 							}).then(response => {
 								console.log(response.data);
