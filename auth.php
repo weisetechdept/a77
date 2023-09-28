@@ -44,7 +44,7 @@
 							}).then(response => {
 								console.log(response.data);
 								if(response.data.status == '200'){
-									window.location.href = "/sales/home";
+									window.location.href = "/home";
 								}
 								if(response.data.status == '400'){
 									swal("ท่านยังไม่ได้ลงทะเบียน", "โปรดติดต่อผู้ดูแลระบบ", "warning",{ 
