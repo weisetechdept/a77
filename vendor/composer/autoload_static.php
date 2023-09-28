@@ -11,6 +11,16 @@ class ComposerStaticInit83c41345d18917b593b00bb1e12c14e8
         'd383f1ec7b1e54a09cb53eb6fcf751e0' => __DIR__ . '/..' . '/thingengineer/mysqli-database-class/dbObject.php',
     );
 
+    public static $prefixesPsr0 = array (
+        'B' => 
+        array (
+            'Bramus' => 
+            array (
+                0 => __DIR__ . '/..' . '/bramus/router/src',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
@@ -18,6 +28,7 @@ class ComposerStaticInit83c41345d18917b593b00bb1e12c14e8
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixesPsr0 = ComposerStaticInit83c41345d18917b593b00bb1e12c14e8::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit83c41345d18917b593b00bb1e12c14e8::$classMap;
 
         }, null, ClassLoader::class);
