@@ -36,7 +36,7 @@
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script>
 
-			liff.init({ liffId: "1654391121-8wq4olb5" }, () => {
+			liff.init({ liffId: "1654391121-dL8A0jlg" }, () => {
 				if (liff.isLoggedIn()) {
 						liff.getProfile().then(profile => {
 							axios.post('/sales/system/auth.php', {
