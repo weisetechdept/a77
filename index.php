@@ -15,6 +15,14 @@
         require 'sales/pages/home.php';
     });
 
+    $router->get( '/map', function() {
+        require 'sales/pages/map.php';
+    });
+
+    $router->get( '/register', function() {
+        require 'sales/pages/register.php';
+    });
+
     /*
     $router->get( '/ref/(.*)', function($sales_get) {
         require 'loyalty/register-tem.php';

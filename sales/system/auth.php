@@ -8,7 +8,7 @@
         $profile = $db_nms->where('line_usrid',$userId)->getOne('db_member');
         //echo json_encode($profile);
         if(isset($profile['id'])) {
-            //$_SESSION['line_id'] = $profile['memb_id'];
+            $_SESSION['a77usrid'] = $profile['id'];
             echo json_encode(array('status' => '200'));
         } else {
             echo json_encode(array('status' => '400'));
