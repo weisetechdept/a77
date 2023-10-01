@@ -55,6 +55,51 @@
             "install-path": "../bramus/router"
         },
         {
+            "name": "shitric/cloudflare-images",
+            "version": "v1.0",
+            "version_normalized": "1.0.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Shitric/cloudflare-images.git",
+                "reference": "12d4daeb49308cb23b090c458fa53d27c559f765"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Shitric/cloudflare-images/zipball/12d4daeb49308cb23b090c458fa53d27c559f765",
+                "reference": "12d4daeb49308cb23b090c458fa53d27c559f765",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=7.2 || >=8.0"
+            },
+            "time": "2022-05-09T18:35:22+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Shitric\\CloudFlare\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shitric",
+                    "email": "furkan.byzyldz@gmail.com"
+                }
+            ],
+            "description": "A simple PHP class for CloudFlare Images CDN",
+            "support": {
+                "issues": "https://github.com/Shitric/cloudflare-images/issues",
+                "source": "https://github.com/Shitric/cloudflare-images/tree/v1.0"
+            },
+            "install-path": "../shitric/cloudflare-images"
+        },
+        {
             "name": "thingengineer/mysqli-database-class",
             "version": "dev-master",
             "version_normalized": "dev-master",
@@ -106,6 +151,55 @@
                 "source": "https://github.com/ThingEngineer/PHP-MySQLi-Database-Class/tree/master"
             },
             "install-path": "../thingengineer/mysqli-database-class"
+        },
+        {
+            "name": "verot/class.upload.php",
+            "version": "2.1.4",
+            "version_normalized": "2.1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/verot/class.upload.php.git",
+                "reference": "882ae1158d594bef1a529a62b6b68833df9ea818"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/verot/class.upload.php/zipball/882ae1158d594bef1a529a62b6b68833df9ea818",
+                "reference": "882ae1158d594bef1a529a62b6b68833df9ea818",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "time": "2022-12-09T09:22:11+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "classmap": [
+                    "src/class.upload.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Colin Verot",
+                    "email": "colin@verot.net"
+                }
+            ],
+            "description": "This PHP class uploads files and manipulates images very easily.",
+            "homepage": "http://www.verot.net/php_class_upload.htm",
+            "keywords": [
+                "gd",
+                "upload"
+            ],
+            "support": {
+                "email": "colin@verot.net",
+                "issues": "https://github.com/verot/class.upload.php/issues",
+                "source": "https://github.com/verot/class.upload.php/tree/2.1.4"
+            },
+            "install-path": "../verot/class.upload.php"
         }
     ],
     "dev": true,

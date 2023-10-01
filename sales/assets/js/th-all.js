@@ -5608,7 +5608,7 @@ Highcharts.maps["countries/th/th-all"] = {
             "hc-group": "admin1",
             "hc-middle-x": 0.53,
             "hc-middle-y": 0.40,
-            "hc-key": "Chiang Mai",
+            "hc-key": "th-cm",
             "hc-a2": "CM",
             "labelrank": "7",
             "hasc": "TH.CM",

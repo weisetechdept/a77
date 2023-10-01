@@ -23,11 +23,9 @@
         require 'sales/pages/register.php';
     });
 
-    /*
-    $router->get( '/ref/(.*)', function($sales_get) {
-        require 'loyalty/register-tem.php';
+    $router->get( '/profile/(.*)', function($m_id) {
+        require 'sales/pages/member-profile.php';
     });
-    */
 
     $router->run();
     

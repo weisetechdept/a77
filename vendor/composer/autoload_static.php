@@ -11,6 +11,20 @@ class ComposerStaticInit83c41345d18917b593b00bb1e12c14e8
         'd383f1ec7b1e54a09cb53eb6fcf751e0' => __DIR__ . '/..' . '/thingengineer/mysqli-database-class/dbObject.php',
     );
 
+    public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Shitric\\CloudFlare\\' => 19,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Shitric\\CloudFlare\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/shitric/cloudflare-images/src',
+        ),
+    );
+
     public static $prefixesPsr0 = array (
         'B' => 
         array (
@@ -23,11 +37,14 @@ class ComposerStaticInit83c41345d18917b593b00bb1e12c14e8
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Verot\\Upload\\Upload' => __DIR__ . '/..' . '/verot/class.upload.php/src/class.upload.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit83c41345d18917b593b00bb1e12c14e8::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit83c41345d18917b593b00bb1e12c14e8::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit83c41345d18917b593b00bb1e12c14e8::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit83c41345d18917b593b00bb1e12c14e8::$classMap;
 

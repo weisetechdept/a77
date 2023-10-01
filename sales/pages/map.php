@@ -56,6 +56,9 @@
             .card-map {
                 padding: 0.5rem 0.25rem 0.25rem 0.25rem;
             }
+            .card-topic {
+                padding: 0.5rem 0 0 1rem;
+            }
         </style>
     </head>
 
@@ -154,7 +157,7 @@
                             <div class="col-lg-4 col-md-12">
                                 <div class="card">
                                     <div class="card-body card-map">
-                                        <h4 class="mb-2 font-size-18">แผนที่แสดงจำนวน</h4>
+                                        <h4 class="mb-2 font-size-18 card-topic">แผนที่แสดงจำนวน</h4>
                                         <div id="map-container"></div>
                                     </div>
                                 </div>
@@ -547,7 +550,7 @@
                         "value": 67
                     },
                     {
-                        "hc-key": "เชียงใหม่",
+                        "hc-key": "th-cm",
                         "value": 68
                     },
                     {
@@ -628,7 +631,7 @@
                         name: 'จำนวนประชากร',
                         states: {
                             hover: {
-                                color: '#BADA55'
+                                color: '#FF0000'
                             }
                         }
                     }]
