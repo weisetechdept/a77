@@ -176,18 +176,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Alice</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Thornton</td>
-                                                        <td>@fat</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>the Bird</td>
-                                                        <td>@twitter</td>
-                                                    </tr>
+                                                    
                                                 </tbody>
                                             </table>
                                         </div>
@@ -251,7 +240,7 @@
 
         <script src="https://code.highcharts.com/maps/highmaps.js"></script>
 		<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-		<script src="/sales/assets/js/th-all.js"></script>
+		<script src="/sales/assets/js/th-th-all.js"></script>
         <!-- third party js ends -->
 
         <!-- Datatables init -->

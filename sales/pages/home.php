@@ -263,7 +263,7 @@
                     'data': '0',
                     sortable: false,
                     "render": function ( data, type, full, meta ) {
-                        return '<a href="member-detail.php?u='+data+'" class="btn btn-sm btn-outline-primary editBtn" role="button"><span class="mdi mdi-account-edit"></span> แก้ใข</a>';
+                        return '<a href="/profile/'+data+'" class="btn btn-sm btn-outline-primary editBtn" role="button"><span class="mdi mdi-account-edit"></span> แก้ใข</a>';
                     }
                 }
             ],
@@ -280,9 +280,10 @@
             mounted () {
                 axios
                 .get('/sales/system/nav.api.php')
-                .then(response => (this.sales_name = response.data.sales.name,
-                                    this.sales_photo = response.data.sales.photo
-                    ))
+                    .then(response => (
+                        this.sales_name = response.data.sales.name,
+                        this.sales_photo = response.data.sales.photo
+                ))
             }
         });
     </script>

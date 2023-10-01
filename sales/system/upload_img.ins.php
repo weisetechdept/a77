@@ -1,0 +1,27 @@
+<?php
+    session_start();
+    require_once '../../db-conn.php';
+    date_default_timezone_set("Asia/Bangkok");
+
+    $data = json_decode(file_get_contents("php://input"));
+    if(isset($data->aimg_img_id)){
+        $img_id = $data->aimg_img_id;
+        $img_link = $data->aimg_link;
+        $agrnt_id = $data->aimg_parent;
+    
+        $data = Array (
+            "aimg_img_id" => $img_id,
+            "aimg_link" => $img_link,
+            "aimg_group" => "1",
+            "aimg_parent" => $agrnt_id,
+            "aimg_status" => "1",
+            "aimg_datetime" => date("Y-m-d H:i:s")
+        );
+        
+        $id = $db->insert ('a77_agent_img', $data);
+        if ($id){
+            echo json_encode(array('status' => '200'));
+        } else {
+            echo json_encode(array('status' => '400'));
+        }
+    }
