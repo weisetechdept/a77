@@ -1,3 +1,10 @@
+<?php 
+    /* permission */
+    session_start();
+    if(!isset($_SESSION['a77usrid'])){
+        header("Location: /404");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
