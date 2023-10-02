@@ -3,10 +3,10 @@
     require_once '../../db-conn.php';
     date_default_timezone_set("Asia/Bangkok");
 
-    if(!isset($_SESSION['user_id'])){
+    if(!isset($_SESSION['a77usrid'])){
         header("Location: /404");
     }
-    $userid = $_SESSION['user_id'];
+    $userid = $_SESSION['a77usrid'];
 
     $data = json_decode(file_get_contents("php://input"));
     if(isset($data->aimg_img_id)){
