@@ -25,6 +25,7 @@
     <link href="/sales/assets/plugins/datatables/buttons.bootstrap4.css" rel="stylesheet" type="text/css" />
     <link href="/sales/assets/plugins/datatables/select.bootstrap4.css" rel="stylesheet" type="text/css" />
 
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@100;200;300;400;500;600;700;800&family=Kanit:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- App css -->
     <link href="/sales/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
