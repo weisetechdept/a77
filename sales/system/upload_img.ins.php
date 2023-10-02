@@ -14,6 +14,9 @@
         $img_id = $data->aimg_img_id;
         $img_link = $data->aimg_link;
         $agrnt_id = $data->aimg_parent;
+
+        $chk = $db->where('aimg_parent',$agrnt_id)->getOne('a77_agent_img');
+        $chk_img = $chk['aimg_id'];
     
         $data = Array (
             "aimg_img_id" => $img_id,
@@ -28,8 +31,7 @@
         if ($id){
 
             //Update Status
-            $chk = $db->where('aimg_parent',$agrnt_id)->getOne('a77_agent_img');
-            if(empty($chk['aimg_id'])){
+            if(empty($chk_img)){
                 $data = Array (
                     'agen_status' => '1',
                 );
@@ -39,6 +41,7 @@
                 } else {
                     echo json_encode(array('status' => '400'));
                 }
+
             } else {
                 echo json_encode(array('status' => '200'));
             }
