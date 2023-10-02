@@ -1,3 +1,10 @@
+<?php 
+    /* permission */
+    session_start();
+    if(!isset($_SESSION['user_id'])){
+        header("Location: /404");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 

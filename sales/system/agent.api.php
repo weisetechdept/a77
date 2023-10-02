@@ -3,6 +3,11 @@
     require_once '../../db-conn.php';
     date_default_timezone_set("Asia/Bangkok");
 
+    if(!isset($_SESSION['user_id'])){
+        header("Location: /404");
+    }
+    $userid = $_SESSION['user_id'];
+
     function DateThai($strDate)
 	{
 		$strYear = date("Y",strtotime($strDate))+543;

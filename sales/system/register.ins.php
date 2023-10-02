@@ -3,6 +3,11 @@
     require_once '../../db-conn.php';
     date_default_timezone_set("Asia/Bangkok");
 
+    if(!isset($_SESSION['user_id'])){
+        header("Location: /404");
+    }
+    $userid = $_SESSION['user_id'];
+
     $request = json_decode(file_get_contents('php://input'));
 
     $first_name = $request->firstName;
@@ -20,7 +25,7 @@
             "agen_gender" => $gender,
             "agen_people_id" => $peopleId,
             "agen_province" => $province,
-            "agen_parent" => '271',
+            "agen_parent" => $userid,
             "agen_status" => '0',
             "agen_datetime" => date("Y-m-d H:i:s")
         );

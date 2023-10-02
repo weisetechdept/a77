@@ -35,7 +35,6 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.1/axios.min.js"></script>
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script>
-
 			liff.init({ liffId: "1654391121-dL8A0jlg" }, () => {
 				if (liff.isLoggedIn()) {
 						liff.getProfile().then(profile => {
@@ -55,7 +54,6 @@
 							});
 
 						}).catch(err => console.error(err));
-
 				} else {
 					liff.login();
 				}

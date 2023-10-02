@@ -1,5 +1,9 @@
 <?php 
-    
+        session_start();
+        if(!isset($_SESSION['user_id'])){
+            header("Location: /404");
+        }
+        $userid = $_SESSION['user_id'];
 
         $image = $_FILES['file_upload']['tmp_name'];
         $type = mime_content_type($image);
