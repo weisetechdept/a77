@@ -296,6 +296,14 @@
                                 }
                             );
                         } else {
+                            swal({
+                                title: "กำลังสร้างสมาชิกใหม่",
+                                text: "โปรดรอสักครู่ ระบบกำลังกำลังสร้างสมาชิกใหม่ของคุณ",
+                                icon: "info",
+                                buttons: false,
+                                closeOnClickOutside: false,
+                                closeOnEsc: false
+                            });
                             axios.post('/sales/system/register.ins.php', {
                                 firstName: this.profile.f_name,
                                 lastName: this.profile.l_name,
@@ -337,7 +345,7 @@
                 }
             }
         });
-
+ 
         var navigation = new Vue({
             el: '#nav',
             data () {

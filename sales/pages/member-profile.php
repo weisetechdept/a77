@@ -152,7 +152,7 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">A77</a></li>
-                                            <li class="breadcrumb-item active">รายละเอียดสมาชิก</li>
+                                            <li class="breadcrumb-item active">สมาชิก</li>
                                         </ol>
                                     </div>
                                     
@@ -186,7 +186,9 @@
                                                     </tr>
                                                     <tr>
                                                         <td>สถานะ</td>
-                                                        <td>{{ status }}</td>
+                                                        <td v-if="status == '0'"><span class="badge badge-soft-warning">อัพโหลดเอกสาร</span></td>
+                                                        <td v-else-if="status == '1'"><span class="badge badge-soft-secondary">รอตรวจสอบ</span></td>
+                                                        <td v-else-if="status == '2'"><span class="badge badge-soft-success">อนุมัติ</span></td>
                                                     </tr>
                                                     <tr>
                                                         <td>วันที่สมัคร</td>
@@ -199,19 +201,10 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row" v-for="docs in img">
-                            <div class="col-lg-4 col-md-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <img :src="docs.link" width="100%">
-                                        <p>อัพโหลดเมื่อ : {{ docs.datetime }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         
                       </div>
+
+
                         <div class="row">
                             <div class="col-lg-4 col-md-12">
                                 <div class="card">
@@ -219,8 +212,12 @@
                                         <h4 class="mb-2 font-size-18">อัพโหลดเอกสาร</h4>
                                         <div id="form">
                                           <form @submit.prevent="sendData">
-                                              <input type="file" name="file_upload" id="file_upload" @change="onFileChange">
-                                              <input type="submit" value="อัพโหลด">
+                                                <div class="form-group">
+                                                    <input type="file" name="file_upload" id="file_upload" @change="onFileChange">
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">อัพโหลด</button>
+                                                </div>
                                           </form>
                                       </div>
                                     </div>
@@ -228,6 +225,20 @@
                             </div>
 
                         </div>
+
+                        <div id="docs">
+                            <div class="row" v-for="docs in img">
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <img :src="docs.link" width="100%">
+                                            <p>อัพโหลดเมื่อ : {{ docs.datetime }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -296,52 +307,62 @@
                             this.file_upload = e.target.files[0];
                         },
                         sendData() {
-                            var formData = new FormData();
-                            formData.append('file_upload', this.file_upload);
+                            var a = this.file_upload;
+                            if ((a == null || a == "")) {
+                                swal("ไม่สามารถทำรายการได้", "โปรดเลือกไฟล์เอกสารที่ต้องการทำรายการ", "warning",{ 
+                                        button: "ตกลง"
+                                    }
+                                );
+                            } else {
+                                var formData = new FormData();
+                                formData.append('file_upload', this.file_upload);
 
-                            swal({
-                                title: "กำลังอัพโหลด...",
-                                text: "โปรดรอสักครู่ ระบบกำลังอัพโหลดเอกสารของคุณ",
-                                icon: "info",
-                                buttons: false,
-                                closeOnClickOutside: false,
-                                closeOnEsc: false
-                            });
+                                swal({
+                                    title: "กำลังอัพโหลด...",
+                                    text: "โปรดรอสักครู่ ระบบกำลังอัพโหลดเอกสารของคุณ",
+                                    icon: "info",
+                                    buttons: false,
+                                    closeOnClickOutside: false,
+                                    closeOnEsc: false
+                                });
 
-                            axios.post('/sales/system/cfimg.api.php', formData, {
-                                headers: {
-                                    'Content-Type': 'multipart/form-data'
-                                }
-                            }).then(res => {
-                              var cfimg_id =  res.data.result.id;
-                              var cfimg_link =  res.data.result.variants[1];
+                                axios.post('/sales/system/cfimg.api.php', formData, {
+                                    headers: {
+                                        'Content-Type': 'multipart/form-data'
+                                    }
+                                }).then(res => {
+                                var cfimg_id =  res.data.result.id;
+                                var cfimg_link =  res.data.result.variants[1];
 
-                              if(res.data.success == true) 
-                                  axios.post('/sales/system/upload_img.ins.php',{
-                                      aimg_img_id: cfimg_id,
-                                      aimg_link:  cfimg_link,
-                                      aimg_parent: <?php echo $m_id; ?>
-                                  }).then(res => {
-                                      if(res.data.status == 200) 
-                                          swal("สำเร็จ", "อัพโหลดเอกสารสำเร็จ", "success",{ 
-                                              button: "ตกลง"
-                                          }).then((value) => {
-                                              location.reload(true)
-                                          });
-                                      if(res.data.status == 400) 
-                                          swal("ทำรายการไม่สำเร็จ", "อัพโหลดเอกสารไม่สำเร็จ อาจมีบางอย่างผิดปกติ (error : 400)", "warning",{ 
-                                              button: "ตกลง"
-                                          }
-                                      );
-                                  });
+                                if(res.data.success == true) 
+                                    axios.post('/sales/system/upload_img.ins.php',{
+                                        aimg_img_id: cfimg_id,
+                                        aimg_link:  cfimg_link,
+                                        aimg_parent: <?php echo $m_id; ?>
+                                    }).then(res => {
+                                        if(res.data.status == 200) 
+                                            swal("สำเร็จ", "อัพโหลดเอกสารสำเร็จ", "success",{ 
+                                                button: "ตกลง"
+                                            }).then((value) => {
+                                                location.reload(true)
+                                            });
+                                        if(res.data.status == 400) 
+                                            swal("ทำรายการไม่สำเร็จ", "อัพโหลดเอกสารไม่สำเร็จ อาจมีบางอย่างผิดปกติ (error : 400)", "warning",{ 
+                                                button: "ตกลง"
+                                            }
+                                        );
+                                    });
 
-                              if(res.data.success == false) 
-                                  swal("ทำรายการไม่สำเร็จ", "อัพโหลดเอกสารไม่สำเร็จ อาจมีบางอย่างผิดปกติ", "warning",{ 
-                                      button: "ตกลง"
-                                  }
-                              );
+                                if(res.data.success == false) 
+                                    swal("ทำรายการไม่สำเร็จ", "อัพโหลดเอกสารไม่สำเร็จ อาจมีบางอย่างผิดปกติ", "warning",{ 
+                                        button: "ตกลง"
+                                    }
+                                );
 
-                            });
+                                });
+                            }
+
+                            
                         }
                     }
                 });
@@ -373,8 +394,7 @@
                             province: '',
                             thai_id: '',
                             status: '',
-                            datetime: '',
-                            img: null
+                            datetime: ''
                         }
                     },
                     mounted () {
@@ -385,7 +405,22 @@
                               this.province = response.data.agent.province,
                               this.thai_id = response.data.agent.thai_id,
                               this.status = response.data.agent.status,
-                              this.datetime = response.data.agent.datetime,
+                              this.datetime = response.data.agent.datetime
+                          ))
+                    }
+                });
+
+                var docs = new Vue({
+                    el: '#docs',
+                    data () {
+                        return {
+                            img: null
+                        }
+                    },
+                    mounted () {
+                        axios.get('/sales/system/docs.api.php?u=<?php echo $m_id; ?>')
+                          .then(response => (
+                            console.log(response.data),
                               this.img = response.data.img
                           ))
                     }
