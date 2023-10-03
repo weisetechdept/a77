@@ -14,6 +14,7 @@
     $last_name = $request->lastName;
     $gender = $request->gender;
     $peopleId = $request->peopleId;
+    $tel = $request->tel;
     $province = $request->province;
 
     $chk_family = $db_family->where('memb_people_id', $peopleId)->getOne('tpf_member');
@@ -24,6 +25,7 @@
             "agen_last_name" => $last_name,
             "agen_gender" => $gender,
             "agen_people_id" => $peopleId,
+            "agen_tel" => $tel,
             "agen_province" => $province,
             "agen_parent" => $userid,
             "agen_status" => '0',

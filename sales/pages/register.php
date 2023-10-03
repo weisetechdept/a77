@@ -192,6 +192,11 @@
                                         </div>
 
                                         <div class="form-group">
+                                            <label for="simpleinput">เบอร์โทรศัพท์</label>
+                                            <input type="text" v-model="profile.tel" v-on:keypress="NumbersOnly" class="form-control" maxlength="10">
+                                        </div>
+
+                                        <div class="form-group">
                                             <label for="simpleinput">จังหวัด (ตามบัตรประชาชน)</label>
                                             <select v-model="profile.prov" class="form-control mb-3">
                                                 <option value="0"> = โปรดเลือกจังหวัด =</option>
@@ -275,6 +280,7 @@
                         l_name: '',
                         gender: '',
                         p_id: '',
+                        tel: '',
                         prov: '0'
                     }
                 }
@@ -290,10 +296,11 @@
                         var a = this.profile.f_name;
                         var b = this.profile.l_name;
                         var c = this.profile.gender;
+                        var t = this.profile.tel;
                         var d = this.profile.p_id;
                         var dl = this.profile.p_id.length;
                         var e = this.profile.prov;
-                        if ((a == null || a == "") || (b == null || b == "") || (c == null || c == "") || (d == null || d == "" || dl != '13') || (e == null || e == "0")) {
+                        if ((a == null || a == "") || (b == null || b == "") || (c == null || c == "") || (d == null || d == "" || dl != '13') || (e == null || e == "0") || (t == null || t == "0")) {
                             swal("ไม่สามารถทำรายการได้", "โปรดตรวจสอบเงื่อนไขการสมัครสมาชิกให้ถูกต้อง และครบถ้วน", "warning",{ 
                                     button: "ตกลง"
                                 }
@@ -312,6 +319,7 @@
                                 lastName: this.profile.l_name,
                                 gender: this.profile.gender,
                                 peopleId: this.profile.p_id,
+                                tel: this.profile.tel,
                                 province: this.profile.prov
                             }).then(res => {
                                 //console.log(res);
