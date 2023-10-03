@@ -13,6 +13,7 @@
     if(isset($data->aimg_img_id)){
         $img_id = $data->aimg_img_id;
         $img_link = $data->aimg_link;
+        $img_link_500 = $data->aimg_link_500;
         $agrnt_id = $data->aimg_parent;
 
         $chk = $db->where('aimg_parent',$agrnt_id)->getOne('a77_agent_img');
@@ -21,6 +22,7 @@
         $data = Array (
             "aimg_img_id" => $img_id,
             "aimg_link" => $img_link,
+            "aimg_link_500" => $img_link_500,
             "aimg_group" => "1",
             "aimg_parent" => $agrnt_id,
             "aimg_status" => "1",

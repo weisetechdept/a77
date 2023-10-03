@@ -291,8 +291,9 @@
                         var b = this.profile.l_name;
                         var c = this.profile.gender;
                         var d = this.profile.p_id;
+                        var dl = this.profile.p_id.length;
                         var e = this.profile.prov;
-                        if ((a == null || a == "") || (b == null || b == "") || (c == null || c == "") || (d == null || d == "") || (e == null || e == "0")) {
+                        if ((a == null || a == "") || (b == null || b == "") || (c == null || c == "") || (d == null || d == "" || dl != '13') || (e == null || e == "0")) {
                             swal("ไม่สามารถทำรายการได้", "โปรดตรวจสอบเงื่อนไขการสมัครสมาชิกให้ถูกต้อง และครบถ้วน", "warning",{ 
                                     button: "ตกลง"
                                 }

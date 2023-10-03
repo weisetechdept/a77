@@ -231,8 +231,9 @@
                                 <div class="col-lg-4 col-md-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <img :src="docs.link" width="100%">
-                                            <p>อัพโหลดเมื่อ : {{ docs.datetime }}</p>
+                                            <img :src="docs.link_500" width="100%">
+                                            <a :href="docs.link" type="button" class="btn btn-sm btn-primary waves-effect waves-light mt-2" style="width: 100%; margin-top: 10px;">รูปขนาดเต็ม</a>
+                                            <p class="mt-1">อัพโหลดเมื่อ : {{ docs.datetime }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -332,12 +333,14 @@
                                     }
                                 }).then(res => {
                                 var cfimg_id =  res.data.result.id;
+                                var cfimg_link_500 =  res.data.result.variants[0];
                                 var cfimg_link =  res.data.result.variants[1];
 
                                 if(res.data.success == true) 
                                     axios.post('/sales/system/upload_img.ins.php',{
                                         aimg_img_id: cfimg_id,
                                         aimg_link:  cfimg_link,
+                                        aimg_link_500: cfimg_link_500,
                                         aimg_parent: <?php echo $m_id; ?>
                                     }).then(res => {
                                         if(res.data.status == 200) 
