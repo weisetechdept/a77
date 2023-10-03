@@ -183,11 +183,11 @@
                             </div>
                         </div> <!-- end col-->
 
-                        <div class="col-6" style="padding-right: 5px;">
+                        <div class="col-4" style="padding-right: 5px;">
                             <div class="card bg-warning border-warning">
                                 <div class="card-body">
                                     <div class="mb-2">
-                                        <h5 class="card-title mb-0 text-white">อัพโหลดเอกสาร</h5>
+                                        <h5 class="card-title mb-0 text-white">อัพโหลด</h5>
                                     </div>
                                     <div class="row d-flex align-items-center">
                                         <div class="col-8">
@@ -200,7 +200,24 @@
                             </div>
                         </div> <!-- end col-->
 
-                        <div class="col-6" style="padding-left: 5px;">
+                        <div class="col-4" style="padding-right: 5px;padding-left: 5px;">
+                            <div class="card bg-info border-info">
+                                <div class="card-body">
+                                    <div class="mb-2">
+                                        <h5 class="card-title mb-0 text-white">ตรวจสอบ</h5>
+                                    </div>
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-8">
+                                            <h2 class="d-flex align-items-center text-white mb-0">
+                                                {{ pending }}
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- end col-->
+
+                        <div class="col-4" style="padding-left: 5px;">
                             <div class="card bg-danger border-danger">
                                 <div class="card-body">
                                     <div class="mb-2">
@@ -379,6 +396,7 @@
                     all: '',
                     upload: '',
                     active: '',
+                    pending: '',
                     reject: ''
                 }
             },
@@ -389,6 +407,7 @@
                         this.all = response.data.counter.all,
                         this.upload = response.data.counter.upload,
                         this.active = response.data.counter.active,
+                        this.pending = response.data.counter.pending,
                         this.reject = response.data.counter.reject
                 ))
             }
