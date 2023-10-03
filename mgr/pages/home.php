@@ -1,9 +1,12 @@
 <?php 
     /* permission */
     session_start();
+
+    /*
     if(!isset($_SESSION['a77usrid'])){
         header("Location: /404");
     }
+    */
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,10 +62,73 @@
 
 <body>
     <div id="layout-wrapper">
-        <?php 
-                include_once('ins-pages/nav.php');
-                include_once('ins-pages/sidebar.php');
-        ?>
+        <header id="page-topbar">
+            <div id="nav" class="navbar-header">
+                <div class="d-flex align-items-left">
+                    <button type="button" class="btn btn-sm mr-2 d-lg-none px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+                        <i class="fa fa-fw fa-bars"></i>
+                    </button>
+                    <div class="dropdown d-none d-sm-inline-block"></div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div class="dropdown d-none d-sm-inline-block ml-2">
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-search-dropdown"></div>
+                    </div>
+                    <div class="dropdown d-inline-block">
+                        <div class="dropdown-menu dropdown-menu-right"></div>
+                    </div>
+                    <div class="dropdown d-inline-block">
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-notifications-dropdown"></div>
+                    </div>
+                    <div class="dropdown d-inline-block ml-2">
+                        <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img :src="sales_photo" class="rounded-circle header-profile-user" alt="Header Avatar">
+                            <span class="d-none d-sm-inline-block ml-1">{{ sales_name }}</span>
+                            <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                <span>ออกจากระบบ</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="vertical-menu">
+
+            <div data-simplebar class="h-100">
+
+                <div class="navbar-brand-box">
+                    <a href="/home" class="logo">
+                        <span>
+                            Alpha 77
+                        </span>
+                    </a>
+                </div>
+
+         
+                <div id="sidebar-menu">
+                   
+                    <ul class="metismenu list-unstyled" id="side-menu">
+                        <li class="menu-title">เมนู</li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="fas fa-address-book"></i><span>สมาชิก</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="/mgr/home">รายชื่อสมาชิก</a></li>
+                                <li><a href="/mgr/map">แผนที่</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    
+                </div>
+           
+            </div>
+        </div>
+
         <div class="main-content">
 
             <div class="page-content">
@@ -175,7 +241,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">ตารางรายชื่อสมาชิก</h4>
+                                    <h4 class="card-title">ตารางรายชื่อสมาชิกทีม</h4>
                                     <p class="card-subtitle mb-4">
                                         คุณสามารถเลือกจำนวนข้อมูล ค้นหา รายการตามความต้องการของคุณได้ที่เครื่องมือด้านล่าง
                                     </p>
@@ -184,7 +250,7 @@
                                         <thead>
                                             <tr>
                                                 <th>ชื่อ</th>
-                                                <th>นามสกุล</th>
+                                                <th>เซลล์</th>
                                                 <th>เลขบัตร ปชช.</th>
                                                 <th>จังหวัด</th>
                                                 <th>สถานะ</th>
@@ -278,7 +344,7 @@
             "drawCallback": function () {
                 $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
             },
-            ajax: '/sales/system/home.api.php',
+            ajax: '/mgr/system/team_agent.api.php',
             "columns" : [
                 {'data':'1'},
                 {'data':'2'},

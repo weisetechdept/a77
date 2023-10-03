@@ -17,20 +17,20 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="/sales/assets/images/favicon.ico">
+        <link rel="shortcut icon" href="/assets/images/favicon.ico">
 
         <!-- Plugins css -->
-        <link href="/sales/assets/plugins/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css" />
-        <link href="/sales/assets/plugins/datatables/responsive.bootstrap4.css" rel="stylesheet" type="text/css" />
-        <link href="/sales/assets/plugins/datatables/buttons.bootstrap4.css" rel="stylesheet" type="text/css" />
-        <link href="/sales/assets/plugins/datatables/select.bootstrap4.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/plugins/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/plugins/datatables/responsive.bootstrap4.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/plugins/datatables/buttons.bootstrap4.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/plugins/datatables/select.bootstrap4.css" rel="stylesheet" type="text/css" />
 
         <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@100;200;300;400;500;600;700;800&family=Kanit:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 
         <!-- App css -->
-        <link href="/sales/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="/sales/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-        <link href="/sales/assets/css/theme.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/theme.min.css" rel="stylesheet" type="text/css" />
         <style>
             body {
                 font-family: 'Chakra Petch', sans-serif;
@@ -71,73 +71,10 @@
 
     <body>
         <div id="layout-wrapper">
-            <header id="page-topbar">
-                <div class="navbar-header" id="nav">
-                    <div class="d-flex align-items-left">
-                        <button type="button" class="btn btn-sm mr-2 d-lg-none px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
-                            <i class="fa fa-fw fa-bars"></i>
-                        </button>
-                        <div class="dropdown d-none d-sm-inline-block"></div>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <div class="dropdown d-none d-sm-inline-block ml-2">
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-search-dropdown"></div>
-                        </div>
-                        <div class="dropdown d-inline-block">
-                            <div class="dropdown-menu dropdown-menu-right"></div>
-                        </div>
-                        <div class="dropdown d-inline-block">
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-notifications-dropdown"></div>
-                        </div>
-                        <div class="dropdown d-inline-block ml-2">
-                            <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img :src="sales_photo" class="rounded-circle header-profile-user" alt="Header Avatar">
-                                <span class="d-none d-sm-inline-block ml-1">{{ sales_name }}</span>
-                                <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                    <span>ออกจากระบบ</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            <div class="vertical-menu">
-
-                <div data-simplebar class="h-100">
-
-                    <div class="navbar-brand-box">
-                        <a href="/home" class="logo">
-                            <span>
-                                Alpha 77
-                            </span>
-                        </a>
-                    </div>
-
-            
-                    <div id="sidebar-menu">
-                    
-                        <ul class="metismenu list-unstyled" id="side-menu">
-                            <li class="menu-title">เมนู</li>
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="fas fa-address-book"></i><span>สมาชิก</span></a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="/home">รายชื่อสมาชิก</a></li>
-                                    <li><a href="/register">เพิ่มสมาชิกใหม่</a></li>
-                                    <li><a href="/map">แผนที่</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                        
-                    </div>
-            
-                </div>
-            </div>
+            <?php 
+                    include_once('ins-pages/nav.php');
+                    include_once('ins-pages/sidebar.php');
+            ?>
 
             <div class="main-content">
 
@@ -227,26 +164,26 @@
         <div class="menu-overlay"></div>
 
         <!-- jQuery  -->
-        <script src="/sales/assets/js/jquery.min.js"></script>
-        <script src="/sales/assets/js/bootstrap.bundle.min.js"></script>
-        <script src="/sales/assets/js/metismenu.min.js"></script>
-        <script src="/sales/assets/js/waves.js"></script>
-        <script src="/sales/assets/js/simplebar.min.js"></script>
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/js/metismenu.min.js"></script>
+        <script src="/assets/js/waves.js"></script>
+        <script src="/assets/js/simplebar.min.js"></script>
 
         <!-- third party js -->
-        <script src="/sales/assets/plugins/datatables/jquery.dataTables.min.js"></script>
-        <script src="/sales/assets/plugins/datatables/dataTables.bootstrap4.js"></script>
-        <script src="/sales/assets/plugins/datatables/dataTables.responsive.min.js"></script>
-        <script src="/sales/assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
-        <script src="/sales/assets/plugins/datatables/dataTables.buttons.min.js"></script>
-        <script src="/sales/assets/plugins/datatables/buttons.bootstrap4.min.js"></script>
-        <script src="/sales/assets/plugins/datatables/buttons.html5.min.js"></script>
-        <script src="/sales/assets/plugins/datatables/buttons.flash.min.js"></script>
-        <script src="/sales/assets/plugins/datatables/buttons.print.min.js"></script>
-        <script src="/sales/assets/plugins/datatables/dataTables.keyTable.min.js"></script>
-        <script src="/sales/assets/plugins/datatables/dataTables.select.min.js"></script>
-        <script src="/sales/assets/plugins/datatables/pdfmake.min.js"></script>
-        <script src="/sales/assets/plugins/datatables/vfs_fonts.js"></script>
+        <script src="/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="/assets/plugins/datatables/dataTables.bootstrap4.js"></script>
+        <script src="/assets/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="/assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
+        <script src="/assets/plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="/assets/plugins/datatables/buttons.bootstrap4.min.js"></script>
+        <script src="/assets/plugins/datatables/buttons.html5.min.js"></script>
+        <script src="/assets/plugins/datatables/buttons.flash.min.js"></script>
+        <script src="/assets/plugins/datatables/buttons.print.min.js"></script>
+        <script src="/assets/plugins/datatables/dataTables.keyTable.min.js"></script>
+        <script src="/assets/plugins/datatables/dataTables.select.min.js"></script>
+        <script src="/assets/plugins/datatables/pdfmake.min.js"></script>
+        <script src="/assets/plugins/datatables/vfs_fonts.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.1/axios.min.js"></script>
@@ -254,7 +191,7 @@
 
         <script src="https://code.highcharts.com/maps/highmaps.js"></script>
 		<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-		<script src="/sales/assets/js/th-th-all.js"></script>
+		<script src="/assets/js/th-th-all.js"></script>
         <!-- third party js ends -->
 
         <!-- Datatables init -->
@@ -345,7 +282,7 @@
         </script>
 
         <!-- App js -->
-        <script src="/sales/assets/js/theme.js"></script>
+        <script src="/assets/js/theme.js"></script>
 
     </body>
 
