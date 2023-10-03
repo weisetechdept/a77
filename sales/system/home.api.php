@@ -30,7 +30,12 @@
         $api['data'][] = array($value['agen_id'],$value['agen_first_name'],$value['agen_last_name'],$thai_id,$value['name_in_thai'],$value['agen_status'],DateThai($value['agen_datetime']));
     }
 
-    $profile = $db_nms->where('id',$userid)->getOne('db_member');
-    $api['sales'] = array('name' => $profile['first_name'].' '.$profile['last_name'],'photo' => $profile['line_usrphoto']);
+    $agent_all = $db->where('agen_parent',$userid)->getValue('a77_agent',"count(*)");
+    $agent_upload = $db->where('agen_parent',$userid)->where('agen_status',0)->getValue('a77_agent',"count(*)");
+    //$agent_wait = $db->where('agen_parent',$userid)->where('agen_status',1)->getValue('a77_agent',"count(*)");
+    $agent_active = $db->where('agen_parent',$userid)->where('agen_status',2)->getValue('a77_agent',"count(*)");
+    $agent_reject = $db->where('agen_parent',$userid)->where('agen_status',10)->getValue('a77_agent',"count(*)");
+
+    $api['counter'] = array('all' => $agent_all, 'upload' => $agent_upload, 'active' => $agent_active, 'reject' => $agent_reject);
 
     print_r(json_encode($api));

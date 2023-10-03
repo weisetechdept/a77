@@ -37,6 +37,7 @@
         }
         .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
             font-family: 'Kanit', sans-serif;
+            font-weight: 400;
         }
         .page-content {
             padding: calc(70px + 24px) calc(5px / 2) 70px calc(5px / 2);
@@ -46,6 +47,12 @@
         }
         .dtr-details {
             width: 100%;
+        }
+        .card-body {
+            padding: 1rem;
+        }
+        .card {
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -128,7 +135,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-flex align-items-center justify-content-between">
-                                <h4 class="mb-0 font-size-18">รายชื่อสมาชิก</h4>
+                                <h4 class="mb-0 font-size-18">สมาชิก</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
@@ -139,7 +146,77 @@
                                 
                             </div>
                         </div>
-                    </div>     
+                    </div>    
+                    
+                    <div class="row mb-1" id="counter">
+                        <div class="col-6" style="padding-right: 5px;">
+                            <div class="card bg-primary border-primary">
+                                <div class="card-body">
+                                    <div class="mb-2">
+                                        <h5 class="card-title mb-0 text-white">สมาชิกทั้งหมด</h5>
+                                    </div>
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-8">
+                                            <h2 class="d-flex align-items-center mb-0 text-white">
+                                                {{ all }}
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- end col-->
+
+                        <div class="col-6" style="padding-left: 5px;">
+                            <div class="card bg-success border-success">
+                                <div class="card-body">
+                                    <div class="mb-2">
+                                        <h5 class="card-title mb-0 text-white">อนุมัติ</h5>
+                                    </div>
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-8">
+                                            <h2 class="d-flex align-items-center text-white mb-0">
+                                                {{ active }}
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- end col-->
+
+                        <div class="col-6" style="padding-right: 5px;">
+                            <div class="card bg-warning border-warning">
+                                <div class="card-body">
+                                    <div class="mb-2">
+                                        <h5 class="card-title mb-0 text-white">อัพโหลดเอกสาร</h5>
+                                    </div>
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-8">
+                                            <h2 class="d-flex align-items-center text-white mb-0">
+                                                {{ upload }}
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- end col-->
+
+                        <div class="col-6" style="padding-left: 5px;">
+                            <div class="card bg-danger border-danger">
+                                <div class="card-body">
+                                    <div class="mb-2">
+                                        <h5 class="card-title mb-0 text-white">ไม่อนุมัติ</h5>
+                                    </div>
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-8">
+                                            <h2 class="d-flex align-items-center text-white mb-0">
+                                                {{ reject }}
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- end col-->
+                    </div>
 
                     <div class="row">
                         <div class="col-12">
@@ -291,6 +368,28 @@
                     .then(response => (
                         this.sales_name = response.data.sales.name,
                         this.sales_photo = response.data.sales.photo
+                ))
+            }
+        });
+
+        var counter = new Vue({
+            el: '#counter',
+            data () {
+                return {
+                    all: '',
+                    upload: '',
+                    active: '',
+                    reject: ''
+                }
+            },
+            mounted () {
+                axios
+                .get('/sales/system/home.api.php')
+                    .then(response => (
+                        this.all = response.data.counter.all,
+                        this.upload = response.data.counter.upload,
+                        this.active = response.data.counter.active,
+                        this.reject = response.data.counter.reject
                 ))
             }
         });
