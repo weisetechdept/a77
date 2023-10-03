@@ -232,7 +232,7 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <img :src="docs.link_500" width="100%">
-                                            <a :href="docs.link" type="button" class="btn btn-sm btn-primary waves-effect waves-light mt-2" style="width: 100%; margin-top: 10px;">รูปขนาดเต็ม</a>
+                                            <a :href="docs.link_500" type="button" class="btn btn-sm btn-primary waves-effect waves-light mt-2" style="width: 100%; margin-top: 10px;">รูปขนาดเต็ม</a>
                                             <p class="mt-1">อัพโหลดเมื่อ : {{ docs.datetime }}</p>
                                         </div>
                                     </div>
@@ -402,14 +402,24 @@
                     },
                     mounted () {
                         axios.get('/sales/system/agent.api.php?u=<?php echo $m_id; ?>')
-                          .then(response => (
-                              this.af_name = response.data.agent.name,
-                              this.gender = response.data.agent.gender,
-                              this.province = response.data.agent.province,
-                              this.thai_id = response.data.agent.thai_id,
-                              this.status = response.data.agent.status,
-                              this.datetime = response.data.agent.datetime
-                          ))
+                            .then(response => {
+                                
+                                if(response.data.status == 404) 
+                                    swal("เกิดข้อผิดพลาดบางอย่าง", "อาจมีบางอย่างผิดปกติ (error : 404)", "warning",{ 
+                                        button: "ตกลง"
+                                    }).then((value) => {
+                                        window.location.href = "/home";
+                                    });
+
+                                this.af_name = response.data.agent.name;
+                                this.gender = response.data.agent.gender;
+                                this.province = response.data.agent.province;
+                                this.thai_id = response.data.agent.thai_id;
+                                this.status = response.data.agent.status;
+                                this.datetime = response.data.agent.datetime;
+                                
+                                
+                            })
                     }
                 });
 
@@ -423,7 +433,6 @@
                     mounted () {
                         axios.get('/sales/system/docs.api.php?u=<?php echo $m_id; ?>')
                           .then(response => (
-                            console.log(response.data),
                               this.img = response.data.img
                           ))
                     }
