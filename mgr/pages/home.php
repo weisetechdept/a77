@@ -57,81 +57,46 @@
         .card {
             margin-bottom: 10px;
         }
+        .icon-status {
+            font-size: 20px;
+            text-align: center;
+        }
+        .s-docs {
+            color: #f8ac5a;
+        }
+        .s-active {
+            color: #2ac14e;
+        }
+        .s-wait {
+            color: #23b5e2;
+        }
+        .s-reject {
+            color: #f15050;
+        }
+        .table > thead tr th {
+            vertical-align: middle;
+        }
+        .table tbody tr > .v-center, .oct {
+            text-align: center;
+        }
+        @media only screen and (max-width: 600px) {
+            .table th, .table td {
+                padding: 0.75rem 0.15rem;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div id="layout-wrapper">
-        <header id="page-topbar">
-            <div id="nav" class="navbar-header">
-                <div class="d-flex align-items-left">
-                    <button type="button" class="btn btn-sm mr-2 d-lg-none px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
-                        <i class="fa fa-fw fa-bars"></i>
-                    </button>
-                    <div class="dropdown d-none d-sm-inline-block"></div>
-                </div>
-                <div class="d-flex align-items-center">
-                    <div class="dropdown d-none d-sm-inline-block ml-2">
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-search-dropdown"></div>
-                    </div>
-                    <div class="dropdown d-inline-block">
-                        <div class="dropdown-menu dropdown-menu-right"></div>
-                    </div>
-                    <div class="dropdown d-inline-block">
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-notifications-dropdown"></div>
-                    </div>
-                    <div class="dropdown d-inline-block ml-2">
-                        <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img :src="sales_photo" class="rounded-circle header-profile-user" alt="Header Avatar">
-                            <span class="d-none d-sm-inline-block ml-1">{{ sales_name }}</span>
-                            <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                <span>ออกจากระบบ</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <div class="vertical-menu">
-
-            <div data-simplebar class="h-100">
-
-                <div class="navbar-brand-box">
-                    <a href="/home" class="logo">
-                        <span>
-                            Alpha 77
-                        </span>
-                    </a>
-                </div>
-
-         
-                <div id="sidebar-menu">
-                   
-                    <ul class="metismenu list-unstyled" id="side-menu">
-                        <li class="menu-title">เมนู</li>
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="fas fa-address-book"></i><span>สมาชิก</span></a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="/mgr/home">รายชื่อสมาชิก</a></li>
-                                <li><a href="/mgr/map">แผนที่</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                    
-                </div>
-           
-            </div>
-        </div>
+        <?php 
+                include_once('inc-pages/nav.php');
+                include_once('inc-pages/sidebar.php');
+        ?>
 
         <div class="main-content">
 
-            <div class="page-content">
+            <div class="page-content" id="member">
                 <div class="container-fluid">
 
                     <div class="row">
@@ -150,7 +115,7 @@
                         </div>
                     </div>    
                     
-                    <div class="row mb-1" id="counter">
+                    <div class="row mb-1">
                         <div class="col-6" style="padding-right: 5px;">
                             <div class="card bg-primary border-primary">
                                 <div class="card-body">
@@ -242,29 +207,25 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">ตารางรายชื่อสมาชิกทีม</h4>
-                                    <p class="card-subtitle mb-4">
-                                        คุณสามารถเลือกจำนวนข้อมูล ค้นหา รายการตามความต้องการของคุณได้ที่เครื่องมือด้านล่าง
-                                    </p>
-
-                                    <table id="datatable" class="table dt-responsive nowrap">
+                                    <table class="table dt-responsive nowrap">
                                         <thead>
                                             <tr>
-                                                <th>ชื่อ</th>
                                                 <th>เซลล์</th>
-                                                <th>เลขบัตร ปชช.</th>
-                                                <th>จังหวัด</th>
-                                                <th>สถานะ</th>
-                                                <th>จัดการ</th>
+                                                <th class="oct"><i class="mdi mdi-file-document-box-check-outline icon-status s-active"></i></th>
+                                                <th class="oct"><i class="mdi mdi-file-document-box-plus-outline icon-status s-docs"></i></th>
+                                                <th class="oct"><i class="mdi mdi-file-document-box-search-outline icon-status s-wait"></i></th>
+                                                <th class="oct"><i class="mdi mdi-file-document-box-remove-outline icon-status s-reject"></i></th>
+                                                <th class="oct">รวม</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                            <tr v-for="memb in member">
+                                                <td>{{ memb.name }}</td>
+                                                <td class="v-center">{{ memb.count_active }}</td>
+                                                <td class="v-center">{{ memb.count_upload }}</td>
+                                                <td class="v-center">{{ memb.count_wait }}</td>
+                                                <td class="v-center">{{ memb.count_reject }}</td>
+                                                <td class="v-center">{{ memb.count_all }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -329,48 +290,31 @@
 
     <!-- Datatables init -->
     <script>
-        $('#datatable').DataTable({
-            "language": {
-                "paginate": {
-                    "previous": "<i class='mdi mdi-chevron-left'>",
-                    "next": "<i class='mdi mdi-chevron-right'>"
-                },
-                "lengthMenu": "แสดง _MENU_ รายชื่อ",
-                "zeroRecords": "ขออภัย ไม่มีข้อมูล",
-                "info": "หน้า _PAGE_ ของ _PAGES_",
-                "infoEmpty": "ไม่มีข้อมูล",
-                "search": "ค้นหา:",
-            },
-            "drawCallback": function () {
-                $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
-            },
-            ajax: '/mgr/system/team_agent.api.php',
-            "columns" : [
-                {'data':'1'},
-                {'data':'2'},
-                {'data':'3'},
-                {'data':'4'},
-                { 
-                    'data': '5',
-                    sortable: false,
-                    "render": function ( data, type, full, meta ) {
-                        if(data == '0'){
-                            return '<span class="badge badge-soft-warning">อัพโหลดเอกสาร</span>';
-                        } else if(data == '1') {
-                            return '<span class="badge badge-soft-secondary">รอตรวจสอบ</span>';
-                        } else if(data == '2') {
-                            return '<span class="badge badge-soft-success">อนุมัติ</span>';
-                        }
-                    }
-                },
-                { 
-                    'data': '0',
-                    sortable: false,
-                    "render": function ( data, type, full, meta ) {
-                        return '<a href="/profile/'+data+'" class="btn btn-sm btn-outline-primary editBtn" role="button"><span class="mdi mdi-account-edit"></span> แก้ใข</a>';
-                    }
+        
+        var member = new Vue({
+            el: '#member',
+            data () {
+                return {
+                    member: null,
+                    all: '',
+                    upload: '',
+                    active: '',
+                    pending: '',
+                    reject: ''
                 }
-            ],
+            },
+            mounted () {
+                axios.get('/mgr/system/team_agent.api.php')
+                    .then(response => (
+                        console.log(response.data),
+                        this.member = response.data.sales,
+                        this.all = response.data.counter.all,
+                        this.upload = response.data.counter.upload,
+                        this.active = response.data.counter.active,
+                        this.pending = response.data.counter.pending,
+                        this.reject = response.data.counter.reject
+                ))
+            }
         });
 
         var navigation = new Vue({
@@ -387,30 +331,6 @@
                     .then(response => (
                         this.sales_name = response.data.sales.name,
                         this.sales_photo = response.data.sales.photo
-                ))
-            }
-        });
-
-        var counter = new Vue({
-            el: '#counter',
-            data () {
-                return {
-                    all: '',
-                    upload: '',
-                    active: '',
-                    pending: '',
-                    reject: ''
-                }
-            },
-            mounted () {
-                axios
-                .get('/sales/system/home.api.php')
-                    .then(response => (
-                        this.all = response.data.counter.all,
-                        this.upload = response.data.counter.upload,
-                        this.active = response.data.counter.active,
-                        this.pending = response.data.counter.pending,
-                        this.reject = response.data.counter.reject
                 ))
             }
         });
