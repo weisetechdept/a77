@@ -43,7 +43,12 @@
 							}).then(response => {
 								console.log(response.data);
 								if(response.data.status == '200'){
-									window.location.href = "/home";
+									if(response.data.permission == 'leader'){
+										window.location.href = "/mgr/home";
+									}
+									if(response.data.permission == 'user'){
+										window.location.href = "/home";
+									}
 								}
 								if(response.data.status == '400'){
 									swal("ท่านยังไม่ได้ลงทะเบียน", "โปรดติดต่อผู้ดูแลระบบ", "warning",{ 

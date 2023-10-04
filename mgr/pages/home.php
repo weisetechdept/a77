@@ -2,11 +2,15 @@
     /* permission */
     session_start();
 
-    /*
+    
     if(!isset($_SESSION['a77usrid'])){
         header("Location: /404");
+    } else {
+        if($_SESSION['a77permission'] != 'leader'){
+            header("Location: /404");
+        }
     }
-    */
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,8 +94,8 @@
 <body>
     <div id="layout-wrapper">
         <?php 
-                include_once('inc-pages/nav.php');
-                include_once('inc-pages/sidebar.php');
+                include ('inc-pages/nav.php');
+                include ('inc-pages/sidebar.php');
         ?>
 
         <div class="main-content">

@@ -9,7 +9,8 @@
         //echo json_encode($profile);
         if($profile['verify'] == '1') {
             $_SESSION['a77usrid'] = $profile['id'];
-            echo json_encode(array('status' => '200'));
+            $_SESSION['a77permission'] = $profile['status'];
+            echo json_encode(array('status' => '200', 'permission' => $profile['status']));
         } else {
             echo json_encode(array('status' => '400'));
             unset($_SESSION['a77usrid']);
