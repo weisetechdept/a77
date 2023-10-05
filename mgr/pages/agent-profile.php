@@ -249,14 +249,14 @@
                     mounted () {
                         axios.get('/sales/system/agent.api.php?u=<?php echo $m_id; ?>')
                             .then(response => {
-                                
+                                /*
                                 if(response.data.status == 404) 
                                     swal("เกิดข้อผิดพลาดบางอย่าง", "อาจมีบางอย่างผิดปกติ (error : 404)", "warning",{ 
                                         button: "ตกลง"
                                     }).then((value) => {
                                         window.location.href = "/home";
                                     });
-
+                                */
                                 this.af_name = response.data.agent.name;
                                 this.gender = response.data.agent.gender;
                                 this.province = response.data.agent.province;
