@@ -47,6 +47,18 @@
         require 'mgr/pages/home.php';
     });
 
+    $router->get( '/mgr/agent/(.*)', function($page) {
+        require 'mgr/pages/agent.php';
+    });
+
+    $router->get( '/mgr/profile/(.*)', function($m_id) {
+        require 'mgr/pages/agent-profile.php';
+    });
+
+    $router->get( '/mgr/map', function() {
+        require 'mgr/pages/map.php';
+    });
+
     $router->run();
     
 

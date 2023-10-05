@@ -17,7 +17,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>A77 Member List</title>
+    <title>A77 Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="A77" name="description" />
     <meta content="A77" name="author" />
@@ -111,7 +111,7 @@
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="javascript: void(0);">A77</a></li>
-                                        <li class="breadcrumb-item active">รายชื่อสมาชิก</li>
+                                        <li class="breadcrumb-item active">รายงาน</li>
                                     </ol>
                                 </div>
                                 
@@ -121,88 +121,104 @@
                     
                     <div class="row mb-1">
                         <div class="col-6" style="padding-right: 5px;">
-                            <div class="card bg-primary border-primary">
-                                <div class="card-body">
-                                    <div class="mb-2">
-                                        <h5 class="card-title mb-0 text-white">สมาชิกทั้งหมด</h5>
-                                    </div>
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-8">
-                                            <h2 class="d-flex align-items-center mb-0 text-white">
-                                                {{ all }}
-                                            </h2>
+                            <a href="/mgr/agent/all">
+                                <div class="card bg-primary border-primary">
+                                    <div class="card-body">
+                                        <div class="mb-2">
+                                            <h5 class="card-title mb-0 text-white">สมาชิกทั้งหมด</h5>
+                                        </div>
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-6">
+                                                <h2 class="d-flex align-items-center mb-0 text-white">
+                                                    {{ all }}
+                                                </h2>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
+
                         </div> <!-- end col-->
 
                         <div class="col-6" style="padding-left: 5px;">
-                            <div class="card bg-success border-success">
-                                <div class="card-body">
-                                    <div class="mb-2">
-                                        <h5 class="card-title mb-0 text-white">อนุมัติ</h5>
-                                    </div>
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-8">
-                                            <h2 class="d-flex align-items-center text-white mb-0">
-                                                {{ active }}
-                                            </h2>
+                            <a href="/mgr/agent/active">
+                                <div class="card bg-success border-success">
+                                    <div class="card-body">
+                                        <div class="mb-2">
+                                            <h5 class="card-title mb-0 text-white">อนุมัติ</h5>
+                                        </div>
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-8">
+                                                <h2 class="d-flex align-items-center text-white mb-0">
+                                                    {{ active }}
+                                                </h2>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div> <!-- end col-->
 
                         <div class="col-4" style="padding-right: 5px;">
-                            <div class="card bg-warning border-warning">
-                                <div class="card-body">
-                                    <div class="mb-2">
-                                        <h5 class="card-title mb-0 text-white">อัพโหลด</h5>
-                                    </div>
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-8">
-                                            <h2 class="d-flex align-items-center text-white mb-0">
-                                                {{ upload }}
-                                            </h2>
+                            <a href="/mgr/agent/docs">
+                                <div class="card bg-warning border-warning">
+                                    <div class="card-body">
+                                        <div class="mb-2">
+                                            <h5 class="card-title mb-0 text-white">อัพโหลด</h5>
+                                        </div>
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-8">
+                                                <h2 class="d-flex align-items-center text-white mb-0">
+                                                    {{ upload }}
+                                                </h2>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div> <!-- end col-->
 
                         <div class="col-4" style="padding-right: 5px;padding-left: 5px;">
-                            <div class="card bg-info border-info">
-                                <div class="card-body">
-                                    <div class="mb-2">
-                                        <h5 class="card-title mb-0 text-white">ตรวจสอบ</h5>
-                                    </div>
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-8">
-                                            <h2 class="d-flex align-items-center text-white mb-0">
-                                                {{ pending }}
-                                            </h2>
+
+                            <a href="/mgr/agent/pending">
+                                <div class="card bg-info border-info">
+                                    <div class="card-body">
+                                        <div class="mb-2">
+                                            <h5 class="card-title mb-0 text-white">ตรวจสอบ</h5>
+                                        </div>
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-8">
+                                                <h2 class="d-flex align-items-center text-white mb-0">
+                                                    {{ pending }}
+                                                </h2>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
+
+
                         </div> <!-- end col-->
 
                         <div class="col-4" style="padding-left: 5px;">
-                            <div class="card bg-danger border-danger">
-                                <div class="card-body">
-                                    <div class="mb-2">
-                                        <h5 class="card-title mb-0 text-white">ไม่อนุมัติ</h5>
-                                    </div>
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-8">
-                                            <h2 class="d-flex align-items-center text-white mb-0">
-                                                {{ reject }}
-                                            </h2>
+
+                            <a href="/mgr/agent/reject">
+                                <div class="card bg-danger border-danger">
+                                    <div class="card-body">
+                                        <div class="mb-2">
+                                            <h5 class="card-title mb-0 text-white">ไม่อนุมัติ</h5>
+                                        </div>
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-8">
+                                                <h2 class="d-flex align-items-center text-white mb-0">
+                                                    {{ reject }}
+                                                </h2>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
+
                         </div> <!-- end col-->
                     </div>
 
@@ -308,7 +324,7 @@
                 }
             },
             mounted () {
-                axios.get('/mgr/system/team_agent.api.php')
+                axios.get('/mgr/system/home.api.php')
                     .then(response => (
                         console.log(response.data),
                         this.member = response.data.sales,
