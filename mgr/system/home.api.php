@@ -45,19 +45,25 @@
     //print_r(array_unique($loop));
     foreach (array_unique($loop) as $value) {
 
-        $sales = $db_nms->where('id',$value)->getOne("db_member");
-        $count_all = $db->where('agen_parent',$value)->getValue("a77_agent","count(*)");
-        $count_upload = $db->where('agen_parent',$value)->where('agen_status',0)->getValue("a77_agent","count(*)");
-        $count_wait = $db->where('agen_parent',$value)->where('agen_status',1)->getValue("a77_agent","count(*)");
-        $count_active = $db->where('agen_parent',$value)->where('agen_status',2)->getValue("a77_agent","count(*)");
-        $count_reject = $db->where('agen_parent',$value)->where('agen_status',10)->getValue("a77_agent","count(*)");
+        $sales = $db_nms->where('id',$value)->where('verify',1)->getOne("db_member");
+        if($sales){
 
-        $amout += $count_all;
-        $all_upload += $count_upload;
-        $all_wait += $count_wait;
-        $all_active += $count_active;
-        $all_reject += $count_reject;
-        $api['sales'][] = array('name' => $sales['first_name'],'count_all' => $count_all,'count_upload' => $count_upload,'count_wait' => $count_wait,'count_active' => $count_active,'count_reject' => $count_reject);
+            $count_all = $db->where('agen_parent',$value)->getValue("a77_agent","count(*)");
+            $count_upload = $db->where('agen_parent',$value)->where('agen_status',0)->getValue("a77_agent","count(*)");
+            $count_wait = $db->where('agen_parent',$value)->where('agen_status',1)->getValue("a77_agent","count(*)");
+            $count_active = $db->where('agen_parent',$value)->where('agen_status',2)->getValue("a77_agent","count(*)");
+            $count_reject = $db->where('agen_parent',$value)->where('agen_status',10)->getValue("a77_agent","count(*)");
+
+            $amout += $count_all;
+            $all_upload += $count_upload;
+            $all_wait += $count_wait;
+            $all_active += $count_active;
+            $all_reject += $count_reject;
+
+            $api['sales'][] = array('name' => $sales['first_name'],'count_all' => $count_all,'count_upload' => $count_upload,'count_wait' => $count_wait,'count_active' => $count_active,'count_reject' => $count_reject);
+
+        }
+        
 /*
         $db->join("a77_agent a", "a.agen_province=p.code", "RIGHT");
         $db->where("a.agen_parent",$value);
