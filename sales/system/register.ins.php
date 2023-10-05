@@ -5,6 +5,10 @@
 
     if(!isset($_SESSION['a77usrid'])){
         header("Location: /404");
+    } else {
+        if($_SESSION['a77permission'] != 'user'){
+            header("Location: /404");
+        }
     }
     $userid = $_SESSION['a77usrid'];
 

@@ -5,6 +5,10 @@
 
     if(!isset($_SESSION['a77usrid'])){
         header("Location: /404");
+    } else {
+        if($_SESSION['a77permission'] != 'user'){
+            header("Location: /404");
+        }
     }
     $userid = $_SESSION['a77usrid'];
 
@@ -15,9 +19,6 @@
         $img_link = $data->aimg_link;
         $img_link_500 = $data->aimg_link_500;
         $agrnt_id = $data->aimg_parent;
-
-        $chk = $db->where('aimg_parent',$agrnt_id)->getOne('a77_agent_img');
-        $chk_img = $chk['aimg_id'];
     
         $data = Array (
             "aimg_img_id" => $img_id,
@@ -32,8 +33,9 @@
         $id = $db->insert ('a77_agent_img', $data);
         if ($id){
 
+            $chk = $db->where('agen_id',$agrnt_id)->getOne('a77_agent');
             //Update Status
-            if(empty($chk_img)){
+            if($chk['agen_status'] == '0'){
                 $data = Array (
                     'agen_status' => '1',
                 );
