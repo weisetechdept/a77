@@ -130,6 +130,7 @@
                                                         <td v-if="status == '0'"><span class="badge badge-soft-warning">อัพโหลดเอกสาร</span></td>
                                                         <td v-else-if="status == '1'"><span class="badge badge-soft-secondary">รอตรวจสอบ</span></td>
                                                         <td v-else-if="status == '2'"><span class="badge badge-soft-success">อนุมัติ</span></td>
+                                                        <td v-else-if="status == '10'"><span class="badge badge-soft-danger">ไม่อนุมัติ</span></td>
                                                     </tr>
                                                     <tr>
                                                         <td>วันที่สมัคร</td>
@@ -247,16 +248,16 @@
                         }
                     },
                     mounted () {
-                        axios.get('/sales/system/agent.api.php?u=<?php echo $m_id; ?>')
+                        axios.get('/mgr/system/agent-profile.api.php?u=<?php echo $m_id; ?>')
                             .then(response => {
-                                /*
+                                
                                 if(response.data.status == 404) 
                                     swal("เกิดข้อผิดพลาดบางอย่าง", "อาจมีบางอย่างผิดปกติ (error : 404)", "warning",{ 
                                         button: "ตกลง"
                                     }).then((value) => {
-                                        window.location.href = "/home";
+                                        window.location.href = "/mgr/agent/all";
                                     });
-                                */
+                                
                                 this.af_name = response.data.agent.name;
                                 this.gender = response.data.agent.gender;
                                 this.province = response.data.agent.province;
@@ -277,7 +278,7 @@
                         }
                     },
                     mounted () {
-                        axios.get('/sales/system/docs.api.php?u=<?php echo $m_id; ?>')
+                        axios.get('/mgr/system/docs.api.php?u=<?php echo $m_id; ?>')
                           .then(response => (
                               this.img = response.data.img
                           ))

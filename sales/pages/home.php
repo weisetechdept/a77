@@ -298,6 +298,8 @@
                             return '<span class="badge badge-soft-secondary">รอตรวจสอบ</span>';
                         } else if(data == '2') {
                             return '<span class="badge badge-soft-success">อนุมัติ</span>';
+                        } else if(data == '10') {
+                            return '<span class="badge badge-soft-danger">ไม่อนุมัติ</span>';
                         }
                     }
                 },

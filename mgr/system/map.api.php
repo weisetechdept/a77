@@ -32,8 +32,8 @@
     foreach (array_unique($loop) as $value) {
 
         $db->join("a77_agent a", "a.agen_province=p.code", "RIGHT");
-        $db->where("a.agen_parent", $value);
-        //$db->where("a.agen_parent", $value)->where("a.agen_status", 2);
+        //$db->where("a.agen_parent", $value);
+        $db->where("a.agen_parent", $value)->where("a.agen_status", 2);
         $member = $db->get ("a77_provinces p", null, "p.code, p.name_in_thai, p.map_code");
 
         foreach ($member as $value) {

@@ -23,12 +23,19 @@
 
     $db->join("a77_agent_img i", "i.aimg_parent=a.agen_id", "RIGHT");
     $db->where('aimg_group',1)->where("a.agen_id",$_GET['u']);
-    $img = $db->get("a77_agent a", null, "i.aimg_img_id, i.aimg_link , i.aimg_link_500, i.aimg_group, i.aimg_parent, i.aimg_status, i.aimg_datetime");
+    $img = $db->get("a77_agent a", null, "i.aimg_img_id, i.aimg_link , i.aimg_link_500, i.aimg_group, i.aimg_parent, i.aimg_status, i.aimg_datetime,a.agen_parent");
 
+    
     foreach ($img as $value) {
-        $api['img'][] = array('link' => $value['aimg_link'],
+        
+        if($userid == $value['agen_parent']){
+            $api['img'][] = array('link' => $value['aimg_link'],
             'link_500' => $value['aimg_link_500'],
             'datetime' => DateThai($value['aimg_datetime']));
+        } else {
+            $api = array('status' => 404);
+        }
+        
     }
 
     print_r(json_encode($api));
