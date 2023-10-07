@@ -55,6 +55,10 @@
         require 'mgr/pages/agent-profile.php';
     });
 
+    $router->get( '/mgr/sales/(.*)', function($sales) {
+        require 'mgr/pages/sales.php';
+    });
+
     $router->get( '/mgr/map', function() {
         require 'mgr/pages/map.php';
     });

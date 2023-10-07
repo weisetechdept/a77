@@ -240,7 +240,7 @@
                                         </thead>
                                         <tbody>
                                             <tr v-for="memb in member">
-                                                <td>{{ memb.name }}</td>
+                                                <td><a :href="'/mgr/sales/' + memb.id">{{ memb.name }}</a></td>
                                                 <td class="v-center">{{ memb.count_active }}</td>
                                                 <td class="v-center">{{ memb.count_upload }}</td>
                                                 <td class="v-center">{{ memb.count_wait }}</td>
@@ -326,7 +326,6 @@
             mounted () {
                 axios.get('/mgr/system/home.api.php')
                     .then(response => (
-                        console.log(response.data),
                         this.member = response.data.sales,
                         this.all = response.data.counter.all,
                         this.upload = response.data.counter.upload,
