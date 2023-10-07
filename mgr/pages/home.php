@@ -5,10 +5,8 @@
     
     if(!isset($_SESSION['a77usrid'])){
         header("Location: /404");
-    } else {
-        if($_SESSION['a77permission'] != 'leader'){
-            header("Location: /404");
-        }
+    } elseif($_SESSION['a77permission'] != 'leader') {
+        header("Location: /404");
     }
     
 ?>
