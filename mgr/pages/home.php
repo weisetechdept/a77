@@ -352,15 +352,6 @@
             }
         });
 
-
-        $(document).ready(function() {
-            $('.nowrap').DataTable( {
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-            } );
-        } );
     </script>
 
     <!-- App js -->

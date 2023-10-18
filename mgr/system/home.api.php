@@ -62,7 +62,7 @@
             $all_active += $count_active;
             $all_reject += $count_reject;
 
-            $api['sales'][] = array('id' => $sales['id'],'name' => $sales['first_name'],'count_all' => $count_all,'count_upload' => $count_upload,'count_wait' => $count_wait,'count_active' => $count_active,'count_reject' => $count_reject);
+            $api['sales'][] = array('id' => $sales['id'],'name' => $sales['first_name'].' '.$sales['last_name'],'count_all' => $count_all,'count_upload' => $count_upload,'count_wait' => $count_wait,'count_active' => $count_active,'count_reject' => $count_reject);
 
         }
         
