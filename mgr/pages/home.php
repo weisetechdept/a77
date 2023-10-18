@@ -225,7 +225,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">ตารางรายชื่อสมาชิกทีม</h4>
-                                    <table class="table dt-responsive nowrap">
+                                    <table class="table dt-responsive nowrap" id="example">
                                         <thead>
                                             <tr>
                                                 <th>เซลล์</th>
@@ -351,6 +351,16 @@
                 ))
             }
         });
+
+
+        $(document).ready(function() {
+            $('.nowrap').DataTable( {
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            } );
+        } );
     </script>
 
     <!-- App js -->
