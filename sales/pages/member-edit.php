@@ -298,7 +298,7 @@
                                     swal("สำเร็จ", "เพิ่มสมาชิกเรียบร้อย", "success",{ 
                                         button: "ตกลง"
                                     }).then((value) => {
-                                        window.location.href = "/home";
+                                        window.location.href = "/profile/<?php echo $m_id; ?>";
                                     });
 
                                 if(res.data.status == 505) 
