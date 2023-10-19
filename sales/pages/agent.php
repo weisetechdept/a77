@@ -87,114 +87,44 @@
                             </div>
                         </div>
                     </div>    
-                    
-                    <div class="row mb-1" id="counter">
-
-                        <div class="col-6" style="padding-right: 5px;">
-                            <a href="/agent/all">
-                                <div class="card bg-primary border-primary">
-                                    <div class="card-body">
-                                        <div class="mb-2">
-                                            <h5 class="card-title mb-0 text-white">สมาชิกทั้งหมด</h5>
-                                        </div>
-                                        <div class="row d-flex align-items-center">
-                                            <div class="col-8">
-                                                <h2 class="d-flex align-items-center mb-0 text-white">
-                                                    {{ all }}
-                                                </h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                        </div> <!-- end col-->
-
-                        <div class="col-6" style="padding-left: 5px;">
-                            <a href="/agent/all">
-                            <div class="card bg-success border-success">
-                                <div class="card-body">
-                                    <div class="mb-2">
-                                        <h5 class="card-title mb-0 text-white">อนุมัติ</h5>
-                                    </div>
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-8">
-                                            <h2 class="d-flex align-items-center text-white mb-0">
-                                                {{ active }}
-                                            </h2>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </a>
-                        </div> <!-- end col-->
-
-                        <div class="col-4" style="padding-right: 5px;">
-                            <a href="/agent/docs">
-                            <div class="card bg-warning border-warning">
-                                <div class="card-body">
-                                    <div class="mb-2">
-                                        <h5 class="card-title mb-0 text-white">อัพโหลด</h5>
-                                    </div>
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-8">
-                                            <h2 class="d-flex align-items-center text-white mb-0">
-                                                {{ upload }}
-                                            </h2>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </a>
-                        </div> <!-- end col-->
-
-                        <div class="col-4" style="padding-right: 5px;padding-left: 5px;">
-                            <a href="/agent/pending">
-                            <div class="card bg-info border-info">
-                                <div class="card-body">
-                                    <div class="mb-2">
-                                        <h5 class="card-title mb-0 text-white">ตรวจสอบ</h5>
-                                    </div>
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-8">
-                                            <h2 class="d-flex align-items-center text-white mb-0">
-                                                {{ pending }}
-                                            </h2>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </a>
-                        </div> <!-- end col-->
-
-                        <div class="col-4" style="padding-left: 5px;">
-                            <a href="/agent/reject">
-                            <div class="card bg-danger border-danger">
-                                <div class="card-body">
-                                    <div class="mb-2">
-                                        <h5 class="card-title mb-0 text-white">ไม่อนุมัติ</h5>
-                                    </div>
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-8">
-                                            <h2 class="d-flex align-items-center text-white mb-0">
-                                                {{ reject }}
-                                            </h2>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </a>
-                        </div> <!-- end col-->
-                    </div>
 
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">ตารางรายชื่อสมาชิก</h4>
-                                    <p class="card-subtitle mb-4">
-                                        คุณสามารถเลือกจำนวนข้อมูล ค้นหา รายการตามความต้องการของคุณได้ที่เครื่องมือด้านล่าง
-                                    </p>
+
+                                    <?php if($page == 'all') { ?>
+                                        <div class="card bg-primary border-primary">
+                                            <div class="card-body card-status">
+                                                <h5 class="card-title mb-0 text-white">สมาชิกทั้งหมด</h5>
+                                            </div>
+                                        </div>
+                                    <?php } elseif($page == 'active') { ?>
+                                        <div class="card bg-success border-success">
+                                            <div class="card-body card-status">
+                                                <h5 class="card-title mb-0 text-white">สถานะ : อนุมัติ</h5>
+                                            </div>
+                                        </div>
+                                    <?php } elseif($page == 'docs') { ?>
+                                        <div class="card bg-warning border-warning">
+                                            <div class="card-body card-status">
+                                                <h5 class="card-title mb-0 text-white">สถานะ : รออัพโหลดเอกสาร</h5>
+                                            </div>
+                                        </div>
+                                    <?php } elseif($page == 'pending') { ?>
+                                        <div class="card bg-info border-info">
+                                            <div class="card-body card-status">
+                                                <h5 class="card-title mb-0 text-white">สถานะ : ตรวจสอบ</h5>
+                                            </div>
+                                        </div>
+                                    <?php } elseif($page == 'reject') { ?>
+                                        <div class="card bg-danger border-danger">
+                                            <div class="card-body card-status">
+                                                <h5 class="card-title mb-0 text-white">สถานะ : ไม่อนุมัติ</h5>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
 
                                     <table id="datatable" class="table dt-responsive nowrap">
                                         <thead>
@@ -294,7 +224,7 @@
             "drawCallback": function () {
                 $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
             },
-            ajax: '/sales/system/home.api.php',
+            ajax: '/sales/system/agent-page.api.php?p=<?php echo $page; ?>',
             "columns" : [
                 {'data':'1'},
                 {'data':'2'},
@@ -343,29 +273,7 @@
             }
         });
 
-        var counter = new Vue({
-            el: '#counter',
-            data () {
-                return {
-                    all: '',
-                    upload: '',
-                    active: '',
-                    pending: '',
-                    reject: ''
-                }
-            },
-            mounted () {
-                axios
-                .get('/sales/system/home.api.php')
-                    .then(response => (
-                        this.all = response.data.counter.all,
-                        this.upload = response.data.counter.upload,
-                        this.active = response.data.counter.active,
-                        this.pending = response.data.counter.pending,
-                        this.reject = response.data.counter.reject
-                ))
-            }
-        });
+
     </script>
 
     <!-- App js -->

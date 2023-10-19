@@ -45,6 +45,10 @@
         require 'sales/pages/member-edit.php';
     });
 
+    $router->get( '/agent/(.*)', function($page) {
+        require 'sales/pages/agent.php';
+    });
+
     /* mgr */
 
     $router->get( '/mgr/home', function() {
