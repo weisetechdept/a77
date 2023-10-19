@@ -76,6 +76,10 @@
                 padding: 10px;
                 border-style: dashed;
             }
+            .swal-button--cancel {
+                color: #555;
+                background-color: #efefef;
+            }
         </style>
     </head>
 
@@ -386,14 +390,21 @@
                     },
                     methods: {
                         sendStatus() {
+
                             swal({
-                                title: "คุณแน่ใจหรือไม่?",
-                                text: "คุณแน่ใจหรือไม่ว่าจะส่งข้อมูลเพื่อตรวจสอบใหม่อีกครั้ง",
+                                title: 'คุณแน่ใจหรือไม่ ?',
+                                text: "คุณต้องการขออนุมัติใหม่ใช่หรือไม่ โปรดตรวจสอบข้อมูลให้ถูกต้อง",
                                 icon: "warning",
-                                buttons: ["ยกเลิก", "ตกลง"],
-                                dangerMode: true,
-                            }).than((Submit) => {
-                                if (Submit) {
+                                buttons: {
+                                    cancel: "ยกเลิก",
+                                    confirm: {
+                                        text: "ดำเนินการต่อ",
+                                    }
+                                },
+                                dangerMode: true
+                            }).then((submit) => {
+
+                                if(submit) {
                                     axios.get('/sales/system/sendcheck.edt.php?u=<?php echo $m_id; ?>')
                                     .then(response => {
                                         if(response.data.status == 200) 
@@ -408,10 +419,11 @@
                                             }
                                         );
                                     })
-                                } else {
-                                    swal("Your imaginary file is safe!");
                                 }
-                            });
+                                
+                            })
+
+                            
                         }
                     }
                 });
