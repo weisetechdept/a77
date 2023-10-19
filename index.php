@@ -41,6 +41,10 @@
         require 'sales/pages/member-profile.php';
     });
 
+    $router->get( '/edit/(.*)', function($m_id) {
+        require 'sales/pages/member-edit.php';
+    });
+
     /* mgr */
 
     $router->get( '/mgr/home', function() {

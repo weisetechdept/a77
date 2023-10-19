@@ -70,6 +70,12 @@
             .card-topic {
                 padding: 0.5rem 0 0 1rem;
             }
+            .edit-warning {
+                border: 1pt solid #FF0000;
+                color: #FF0000;
+                padding: 10px;
+                border-style: dashed;
+            }
         </style>
     </head>
 
@@ -126,10 +132,15 @@
                                                         <td>{{ province }}</td>
                                                     </tr>
                                                     <tr>
+                                                        <td>เบอร์โทรศัพท์</td>
+                                                        <td>{{ phone }} <a :href="'tel:'+phone" type="button" class="btn btn-sm btn-success waves-effect waves-light"> โทร</a></td>
+                                                    </tr>
+                                                    <tr>
                                                         <td>สถานะ</td>
                                                         <td v-if="status == '0'"><span class="badge badge-soft-warning">อัพโหลดเอกสาร</span></td>
                                                         <td v-else-if="status == '1'"><span class="badge badge-soft-secondary">รอตรวจสอบ</span></td>
                                                         <td v-else-if="status == '2'"><span class="badge badge-soft-success">อนุมัติ</span></td>
+                                                        <td v-else-if="status == '10'"><span class="badge badge-soft-danger">ไม่อนุมัติ</span></td>
                                                     </tr>
                                                     <tr>
                                                         <td>วันที่สมัคร</td>
@@ -137,6 +148,15 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            <div class="form-group mt-3" v-if="status == '10'">
+                                                <h4 class="mb-2 font-size-18">จัดการข้อมูล</h4>
+                                                <div class="edit-warning mb-2">
+                                                    โปรดตรวจสอบข้อมูลให้ถูกต้อง หรืออัพโหลดเอกสารที่ถูกต้อง ชัดเจนก่อนการขออนุมัติใหม่
+                                                </div>
+                                                <a :href="'/edit/'+id" type="submit" class="btn btn-outline-warning waves-effect waves-light mr-1">แก้ใข</a>
+                                                <button type="submit" @click="sendStatus" class="btn btn-success waves-effect waves-light">ขออนุมันติ</butoon>
+                                              
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -333,10 +353,12 @@
                     el: '#agent',
                     data () {
                         return {
+                            id: '',
                             af_name: '',
                             gender: '',
                             province: '',
                             thai_id: '',
+                            phone: '',
                             status: '',
                             datetime: ''
                         }
@@ -351,16 +373,46 @@
                                     }).then((value) => {
                                         window.location.href = "/home";
                                     });
-
+                                this.id = response.data.agent.id;
                                 this.af_name = response.data.agent.name;
                                 this.gender = response.data.agent.gender;
                                 this.province = response.data.agent.province;
                                 this.thai_id = response.data.agent.thai_id;
                                 this.status = response.data.agent.status;
                                 this.datetime = response.data.agent.datetime;
-                                
+                                this.phone = response.data.agent.phone;
                                 
                             })
+                    },
+                    methods: {
+                        sendStatus() {
+                            swal({
+                                title: "คุณแน่ใจหรือไม่?",
+                                text: "คุณแน่ใจหรือไม่ว่าจะส่งข้อมูลเพื่อตรวจสอบใหม่อีกครั้ง",
+                                icon: "warning",
+                                buttons: ["ยกเลิก", "ตกลง"],
+                                dangerMode: true,
+                            }).than((Submit) => {
+                                if (Submit) {
+                                    axios.get('/sales/system/sendcheck.edt.php?u=<?php echo $m_id; ?>')
+                                    .then(response => {
+                                        if(response.data.status == 200) 
+                                            swal("สำเร็จ", "ทำรายการสำเร็จ", "success",{ 
+                                                button: "ตกลง"
+                                            }).then((value) => {
+                                                location.reload(true)
+                                            });
+                                        if(response.data.status == 404) 
+                                            swal("เกิดข้อผิดพลาดบางอย่าง", "อาจมีบางอย่างผิดปกติ (error : 404)", "warning",{ 
+                                                button: "ตกลง"
+                                            }
+                                        );
+                                    })
+                                } else {
+                                    swal("Your imaginary file is safe!");
+                                }
+                            });
+                        }
                     }
                 });
 

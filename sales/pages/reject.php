@@ -3,11 +3,6 @@
     require_once '../../db-conn.php';
     date_default_timezone_set("Asia/Bangkok");
 
-    if($_GET['s'] != '1474413'){
-        header ("Location: /404");
-    }
-
-
     $db->join("a77_agent a", "a.agen_id=d.aimg_parent", "LEFT")->join("a77_provinces p", "p.code=a.agen_province");
     $db->where("a.agen_status", "1")->orderBy("a.agen_id","asc");
     $member = $db->get ("a77_agent_img d", null, "a.agen_id,a.agen_province,a.agen_first_name, a.agen_last_name, a.agen_people_id,d.aimg_link,p.name_in_thai"); ?>
@@ -16,7 +11,7 @@
         if(isset($app)){
             foreach ($app as $value) {
                 $data = Array (
-                    'agen_status' => '10',
+                    'agen_status' => '2',
                 );
                 $db->where ('agen_id', $value);
                 if ($db->update ('a77_agent', $data))

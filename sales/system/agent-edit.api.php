@@ -23,21 +23,25 @@
 
     $db->join("a77_agent a", "a.agen_province=p.code", "RIGHT");
     $db->where("a.agen_id",$_GET['u']);
-    $member = $db->getOne ("a77_provinces p", null, "a.agen_first_name, a.agen_last_name, a.agen_people_id, p.name_in_thai, a.agen_status, a.agen_datetime,a.agen_id,a.agen_gender, a.agen_parent, a.agen_tel");
+    $member = $db->getOne ("a77_provinces p", null, "a.agen_first_name, a.agen_last_name, a.agen_people_id, p.name_in_thai, a.agen_status, a.agen_datetime,a.agen_id,a.agen_gender, a.agen_parent,p.code,a.agen_tel");
+
+    $pv = $db->orderBy('name_in_thai', 'asc')->get("a77_provinces"); 
+    foreach ($pv as $p) {
+       
+            $api['provinces'][] = array('id' => $p['code'], 'name' => $p['name_in_thai']);
+       
+    }
 
     if($userid == $member['agen_parent']){
-        $thai_id = 'xxxxxxxx'.substr($member['agen_people_id'],8);
-        if($member['agen_gender'] == 'male'){
-            $g = 'ชาย';
-        } else {
-            $g = 'หญิง';
-        }
+       
         $api['agent'] = array('id' => $member['agen_id'],
-            'name' => $member['agen_first_name'].' '.$member['agen_last_name'],
+            'f_name' => $member['agen_first_name'],
+            'l_name' => $member['agen_last_name'],
             'province' => $member['name_in_thai'],
-            'thai_id' => $thai_id,
-            'gender' => $g,
-            'phone' => '0'.$member['agen_tel'],
+            'province_id' => $member['code'],
+            'phone' =>  '0'.$member['agen_tel'],
+            'thai_id' => $member['agen_people_id'],
+            'gender' => $member['agen_gender'],
             'status' => $member['agen_status'],
             'datetime' => DateThai($member['agen_datetime']
         ));
