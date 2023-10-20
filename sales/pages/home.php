@@ -111,7 +111,7 @@
                         </div> <!-- end col-->
 
                         <div class="col-6" style="padding-left: 5px;">
-                            <a href="/agent/all">
+                            <a href="/agent/active">
                             <div class="card bg-success border-success">
                                 <div class="card-body">
                                     <div class="mb-2">
