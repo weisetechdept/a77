@@ -16,7 +16,7 @@
         if(isset($app)){
             foreach ($app as $value) {
                 $data = Array (
-                    'agen_status' => '10',
+                    'agen_status' => '2',
                 );
                 $db->where ('agen_id', $value);
                 if ($db->update ('a77_agent', $data))
