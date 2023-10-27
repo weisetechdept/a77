@@ -12,6 +12,7 @@
     $db->where("a.agen_parent", $userid)->where("a.agen_status", 2);
     $member = $db->get ("a77_provinces p", null, "p.code, p.name_in_thai, p.map_code");
 
+
     foreach ($member as $value) {
         $count[$value['name_in_thai']]++;
     }
@@ -25,4 +26,7 @@
         $api['map_data'][] = array('hc-key' => $value['map_code'], 'value' => ((int) $count[$value['name_in_thai']]));
     }
 
+    $sale_data = $db_nms->where('id',$userid)->getOne('db_member');
+    $api['sales'] = array('name' => $sale_data['first_name'].' '.$sale_data['last_name']);
+    
     print_r(json_encode($api));

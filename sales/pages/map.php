@@ -118,6 +118,10 @@
                                         <p class="card-subtitle mb-4">
                                             แสดงจำนวนสมาชิกทั้งหมดในแต่ละจังหวัดที่ผ่านการอนุมัติแล้ว
                                         </p>
+                                        <p class="card-subtitle mb-4">
+                                            อัพเดท ณ วันที่ {{ new Date().toLocaleDateString('th-TH', {year: 'numeric', month: 'long', day: 'numeric'}) }}</br>
+                                            เซลล์ : {{ sname }}
+                                        </p>
                                         <div class="table-responsive">
                                             <table class="table mb-0">
                                                 <thead>
@@ -222,14 +226,17 @@
                 el: '#map',
                 data() {
                     return {
-                        agent_data: []
+                        agent_data: [],
+                        sname: ''
                     }
                 },
                 mounted() {
                     axios
                         .get('/sales/system/map.api.php')
                         .then(response => {
+                            console.log(response.data);
                             this.agent_data = response.data.province;
+                            this.sname = response.data.sales.name;
 
                             $('#map-container').highcharts('Map', {
                                 chart: {
