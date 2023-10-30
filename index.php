@@ -71,6 +71,13 @@
         require 'mgr/pages/map.php';
     });
 
+    /* API */
+
+    $router->post( '/api/chk_agent77', function() {
+        require 'api/get-agent.php';
+       
+    });
+
     $router->run();
     
 

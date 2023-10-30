@@ -3,6 +3,7 @@
         "thingengineer/mysqli-database-class": "dev-master",
         "bramus/router": "^1.6",
         "shitric/cloudflare-images": "^1.0",
-        "verot/class.upload.php": "^2.1"
+        "verot/class.upload.php": "^2.1",
+        "slim/slim": "^4.12"
     }
 }
