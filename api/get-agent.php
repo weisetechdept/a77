@@ -26,10 +26,10 @@
 
         $img = $db->where('aimg_parent',$chk['agen_id'])->get('a77_agent_img');
         foreach($img as $i){
-            $img_arr = array($i['aimg_link']);
+            $img_arr[] = $i['aimg_link'];
         }
 
-        $api = array('name' => $chk['agen_first_name'].' '.$chk['agen_last_name'],'gender' => $chk['agen_gender'],'province' => $chk['$name_in_thai'],'livein' => null, 'status' => $s_status, 'regis_date' => $chk['agen_datetime'], 'memo' => array(array('campaign' => null, 'end_date' => null)), 'docs_img' => $img_arr,'sale_owner' => $sale['first_name'].' '.$sale['last_name']);
+        $api = array('name' => $chk['agen_first_name'].' '.$chk['agen_last_name'],'gender' => $chk['agen_gender'],'province' => $chk['name_in_thai'],'livein' => null, 'status' => $s_status, 'regis_date' => $chk['agen_datetime'], 'memo' => array(array('campaign' => null, 'end_date' => null)), 'docs_img' => $img_arr,'sale_owner' => $sale['first_name'].' '.$sale['last_name']);
 
         echo json_encode(array('status' => '200', 'message' => 'success', 'data' => $api));
     } else {
