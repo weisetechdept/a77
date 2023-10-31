@@ -233,6 +233,7 @@
                                                 <th class="oct"><i class="mdi mdi-file-document-box-plus-outline icon-status s-docs"></i></th>
                                                 <th class="oct"><i class="mdi mdi-file-document-box-search-outline icon-status s-wait"></i></th>
                                                 <th class="oct"><i class="mdi mdi-file-document-box-remove-outline icon-status s-reject"></i></th>
+                                                <th class="oct"><i class="mdi mdi-google-maps icon-status"></i></th>
                                                 <th class="oct">รวม</th>
                                             </tr>
                                         </thead>
@@ -243,6 +244,7 @@
                                                 <td class="v-center">{{ memb.count_upload }}</td>
                                                 <td class="v-center">{{ memb.count_wait }}</td>
                                                 <td class="v-center">{{ memb.count_reject }}</td>
+                                                <td class="v-center">{{ memb.province }}</td>
                                                 <td class="v-center">{{ memb.count_all }}</td>
                                             </tr>
                                         </tbody>
@@ -329,7 +331,8 @@
                         this.upload = response.data.counter.upload,
                         this.active = response.data.counter.active,
                         this.pending = response.data.counter.pending,
-                        this.reject = response.data.counter.reject
+                        this.reject = response.data.counter.reject,
+                        console.log(response.data.sales)
                 ))
             }
         });
