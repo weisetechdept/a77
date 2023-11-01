@@ -9,7 +9,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Trade-In List</title>
+    <title>Alpha 77 Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="A77" name="description" />
     <meta content="A77" name="author" />
@@ -251,7 +251,7 @@
                 return {
                     agent: [],
                     sales: [],
-                    search_pid: '3670400496924',
+                    search_pid: '',
                 }
             },
             methods: {
