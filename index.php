@@ -71,6 +71,16 @@
         require 'mgr/pages/map.php';
     });
 
+    /* admin */
+
+    $router->get( '/admin/access', function() {
+        require 'admin/access.php';
+    });
+
+    $router->get( '/admin/home', function() {
+        require 'admin/pages/home.php';
+    });
+
     /* API */
 
     $router->post( '/api/chk_agent77', function() {
