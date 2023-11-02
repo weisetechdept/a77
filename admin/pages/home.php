@@ -84,7 +84,7 @@
                     </div>    
 
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-5">
                             <div class="card">
                                 <div class="card-body">
 
@@ -102,8 +102,10 @@
                         </div>
                     </div>
 
+<div id="detail" style="display: none;">
+
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-5">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="mb-2 font-size-18">ข้อมูลเอเจน</h4>
@@ -133,8 +135,8 @@
                                                 <tr>
                                                     <th scope="row">สถานะลูกค้าเก่า</th>
                                                     <td>
-                                                        <span v-if="agent.check_qm == '1'">ลูกค้าเก่า</span>
-                                                        <span v-if="agent.check_qm == '0'">ไม่ใช่ลูกค้าเก่า</span>
+                                                        <span v-if="agent.check_qm == '1'"><span class="badge badge-danger badge-pill">ลูกค้าเก่า</span></span>
+                                                        <span v-if="agent.check_qm == '0'"><span class="badge badge-success badge-pill">ไม่ใช่ลูกค้าเก่า</span></span>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -174,21 +176,52 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
-                        <div class="col-4">
+                    <div class="col-5">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="mb-2 font-size-18">ค้นข้อมูลผู้แนะนำ Quick (ค้าใกล้เคียง)</h4>
+                                    <h4 class="mb-2 font-size-18">เอกสารเอเจน</h4>
+                                    <div  v-for="doce in img" class="col-6">
+                                        <a :href="doce.link" target="_blank">
+                                            <img :src="doce.link" style="height: 150px;width: 150px;object-fit: cover;">
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="mb-2 font-size-18">ค้นข้อมูลผู้แนะนำ Quick (ค่าใกล้เคียง)</h4>
+
+                                    <div v-if="invite.status !== '404'">
+                                        <table v-for="inv in invite" class="table table-bordered mb-3">
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="3">{{ inv.agent_name }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>{{ inv.cust_name }}</td>
+                                                    <td>{{ inv.saleperson }} - {{ inv.saleteam }}</td>
+                                                    <td>{{ inv.buydate }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div v-if="invite.status == '404'" style="text-align: center; margin: 15px 0;">
+                                        ไม่มีข้อมูล
+                                    </div>
+
 
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        
-                    </div>
+</div>    
 
                 </div>
             </div>
@@ -251,18 +284,33 @@
                 return {
                     agent: [],
                     sales: [],
-                    search_pid: '',
+                    invite: [],
+                    img: [],
+                    search_pid: '3670400496924',
                 }
             },
             methods: {
                 chkAgrnt(){
+                    swal({
+                        title: "กำลังค้นหาข้อมูล",
+                        text: "โปรดรอสักครู่ ระบบกำลังค้นหาข้อมูลสำหรับคุณ",
+                        icon: "info",
+                        buttons: false,
+                        closeOnClickOutside: false,
+                        closeOnEsc: false
+                    });
+                    document.getElementById("detail").style.display = "none";
                     axios.post('/admin/system/chk_agent.api.php', {
                         people_id: this.search_pid
                     }).then(function (res) {
-                        console.log(res.data);
+                        //console.log(res.data);
+                        swal.close();
                         if(res.data.status == 200){
+                            document.getElementById("detail").style.display = "block";
                             chk_agent.agent = res.data.agent;
                             chk_agent.sales = res.data.sales;
+                            chk_agent.invite = res.data.invite;
+                            chk_agent.img = res.data.img;
                         } else {
                             swal("ไม่พบข้อมูล", res.data.data, "error");
                         }
