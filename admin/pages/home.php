@@ -286,7 +286,7 @@
                     sales: [],
                     invite: [],
                     img: [],
-                    search_pid: '3670400496924',
+                    search_pid: '',
                 }
             },
             methods: {
