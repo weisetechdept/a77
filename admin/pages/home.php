@@ -139,6 +139,13 @@
                                                         <span v-if="agent.check_qm == '0'"><span class="badge badge-success badge-pill">ไม่ใช่ลูกค้าเก่า</span></span>
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <th scope="row">สถานะเอเจน</th>
+                                                    <td>
+                                                        <span v-if="agent.status !== '2'"><span class="badge badge-danger badge-pill">ไม่อนุมัติ</span></span>
+                                                        <span v-if="agent.status == '2'"><span class="badge badge-success badge-pill">อนุมัติแล้ว</span></span>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
 
@@ -159,7 +166,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">ทีม</th>
-                                                    <td></td>
+                                                    <td>{{ sales.team }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">จำนวนเอเจน (อนุมัติแล้ว)</th>
@@ -291,30 +298,35 @@
             },
             methods: {
                 chkAgrnt(){
-                    swal({
-                        title: "กำลังค้นหาข้อมูล",
-                        text: "โปรดรอสักครู่ ระบบกำลังค้นหาข้อมูลสำหรับคุณ",
-                        icon: "info",
-                        buttons: false,
-                        closeOnClickOutside: false,
-                        closeOnEsc: false
-                    });
-                    document.getElementById("detail").style.display = "none";
-                    axios.post('/admin/system/chk_agent.api.php', {
-                        people_id: this.search_pid
-                    }).then(function (res) {
-                        //console.log(res.data);
-                        swal.close();
-                        if(res.data.status == 200){
-                            document.getElementById("detail").style.display = "block";
-                            chk_agent.agent = res.data.agent;
-                            chk_agent.sales = res.data.sales;
-                            chk_agent.invite = res.data.invite;
-                            chk_agent.img = res.data.img;
-                        } else {
-                            swal("ไม่พบข้อมูล", res.data.data, "error");
-                        }
-                    })
+                    if(this.search_pid == ''){
+                        swal("ไม่ถูกต้อง", "กรุณากรอกหมายเลขบัตรประชาชน", "warning");
+                        return false;
+                    } else {
+                        swal({
+                            title: "กำลังค้นหาข้อมูล",
+                            text: "โปรดรอสักครู่ ระบบกำลังค้นหาข้อมูลสำหรับคุณ",
+                            icon: "info",
+                            buttons: false,
+                            closeOnClickOutside: false,
+                            closeOnEsc: false
+                        });
+                        document.getElementById("detail").style.display = "none";
+                        axios.post('/admin/system/chk_agent.api.php', {
+                            people_id: this.search_pid
+                        }).then(function (res) {
+                            //console.log(res.data);
+                            swal.close();
+                            if(res.data.status == 200){
+                                document.getElementById("detail").style.display = "block";
+                                chk_agent.agent = res.data.agent;
+                                chk_agent.sales = res.data.sales;
+                                chk_agent.invite = res.data.invite;
+                                chk_agent.img = res.data.img;
+                            } else {
+                                swal("ไม่พบข้อมูล", res.data.data, "error");
+                            }
+                        })
+                    }
                 },
                 NumbersOnly(evt) {
                     evt = (evt) ? evt : window.event;

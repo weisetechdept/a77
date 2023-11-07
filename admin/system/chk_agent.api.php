@@ -2,6 +2,7 @@
     session_start();
     require_once '../../db-conn.php';
     date_default_timezone_set("Asia/Bangkok");
+    
     if($_SESSION['a77in_admin'] !== true){
         header('Location: /404');
     }
@@ -9,13 +10,26 @@
     $request = json_decode(file_get_contents('php://input'));
     $people_id = $request->people_id;
 
-    $agent = $db->where('agen_people_id',$people_id)->where('agen_status',2)->getOne('a77_agent');
+    $agent = $db->where('agen_people_id',$people_id)->getOne('a77_agent');
     $sales_id = $agent['agen_parent'];
 
     if($agent['agen_gender'] == 'male'){
         $gender = 'ชาย';
     } else {
         $gender = 'หญิง';
+    }
+
+    /* find team */
+    function find_team($id){
+        global $db_nms;
+        $team = $db_nms->get('db_user_group');
+        foreach ($team as $val) {
+            $se = array_search($id,json_decode($val['detail']));
+            if($se !== false){
+                $sale_team = $val['name'];
+            }
+        }
+        return $sale_team;
     }
 
     /* check old cust */
@@ -65,8 +79,8 @@
     if($agent){
         
         $api = array('status' => 200);
-        $api['sales'] = array('name' => $sales['first_name'].' '.$sales['last_name'],'all_agent' => count($ct),'pv' => count($agn));
-        $api['agent'] = array('id' => $agent['agen_id'],'name' => $agent['agen_first_name'].' '.$agent['agen_last_name'],'gender' => $gender,'people_id' => $agent['agen_people_id'], 'tel' => '0'.$agent['agen_tel'],'province' => $pv['name_in_thai'],'check_qm' => $old_cust);
+        $api['sales'] = array('name' => $sales['first_name'].' '.$sales['last_name'],'all_agent' => count($ct),'pv' => count($agn),'team' => find_team($sales_id));
+        $api['agent'] = array('id' => $agent['agen_id'],'name' => $agent['agen_first_name'].' '.$agent['agen_last_name'],'gender' => $gender,'people_id' => $agent['agen_people_id'], 'tel' => '0'.$agent['agen_tel'],'province' => $pv['name_in_thai'],'check_qm' => $old_cust, 'status' => $agent['agen_status']);
 
         $img = $db->where('aimg_parent',$agent['agen_id'])->get('a77_agent_img');
         foreach ($img as $img_value) {

@@ -81,12 +81,17 @@
         require 'admin/pages/home.php';
     });
 
+    $router->get( '/admin/agent_search', function() {
+        require 'admin/pages/agent_search.php';
+    });
+
     /* API */
 
     $router->post( '/api/chk_agent77', function() {
         require 'api/get-agent.php';
        
     });
+    
 
     $router->run();
     
