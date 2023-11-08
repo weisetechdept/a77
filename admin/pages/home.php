@@ -162,7 +162,7 @@
                                             <tbody>
                                                 <tr>
                                                     <th scope="row" width="185px">ชื่อ - สกุล</th>
-                                                    <td>{{ sales.name }}</td>
+                                                    <td><a :href="'/admin/sales/' + sales.id" target="_blank">{{ sales.name }}</a></td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">ทีม</th>

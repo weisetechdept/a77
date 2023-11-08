@@ -120,12 +120,14 @@
                                                 <th>จังหวัด</th>
                                                 <th>เซลล์</th>
                                                 <th>ทีม</th>
+                                                <th>จัดการ</th>
                                                 <th>สถานะ</th>
                                                 <th>วันที่สมัคร</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
+                                                <td></td>
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
@@ -262,6 +264,14 @@
                 {'data':'5'},
                 {'data':'6'},
                 {'data':'7'},
+                {
+                    'data':'10',
+                    sortable: false,
+                    "render": function ( data, type, full, meta ) {
+                        return '<a href="/admin/sales/'+data+'" class="btn btn-sm btn-primary btn-sm" target="_blank">ข้อมูลเซลล์</a>';
+                    }
+                    
+                },
                 { 
                     'data': '8',
                     sortable: false,

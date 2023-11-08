@@ -85,6 +85,10 @@
         require 'admin/pages/agent_search.php';
     });
 
+    $router->get( '/admin/sales/(.*)', function($id) {
+        require 'admin/pages/sales_detail.php';
+    });
+
     /* API */
 
     $router->post( '/api/chk_agent77', function() {

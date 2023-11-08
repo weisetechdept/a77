@@ -52,7 +52,8 @@
                     $sales['first_name'].' '.$sales['last_name'],
                     find_team($value['agen_parent']),
                     $value['agen_status'],
-                    $value['agen_datetime']
+                    $value['agen_datetime'],
+                    $sales['id']
                 );
             }
 
