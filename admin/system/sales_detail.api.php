@@ -26,8 +26,14 @@
     $docs_count = $db->where('agen_parent',$id)->where('agen_status',0)->getValue('a77_agent','count(*)');
     $reject_count = $db->where('agen_parent',$id)->where('agen_status',10)->getValue('a77_agent','count(*)');
 
+    $agen_pv = $db->where('agen_parent',$id)->where('agen_status',2)->get('a77_agent');
+    foreach ($agen_pv as $value) {
+        $pv[] = $value['agen_province'];
+    }
+    $pvu = array_unique($pv);
+
     $api['sales'] = array('id' => $sales['id'], 'name' => $sales['first_name'].' '.$sales['last_name'],'team' => find_team($id));
-    $api['agent'] = array('total' => $total,'approve' => $approve_count,'pending' => $pending_count,'docs' => $docs_count,'reject' => $reject_count);
+    $api['agent'] = array('total' => $total,'approve' => $approve_count,'pending' => $pending_count,'docs' => $docs_count,'reject' => $reject_count,'pv' => count($pvu));
 
     $db->join('a77_agent a','a.agen_province=p.code','LEFT');
     $db->where('a.agen_parent',$id);

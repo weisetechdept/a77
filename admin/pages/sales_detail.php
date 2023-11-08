@@ -109,7 +109,7 @@
                         </div>
                         <div class="col-5 mb-1">
                             <div class="row">
-                                <div class="col-6" style="padding-right: 5px;">
+                                <div class="col-4" style="padding-right: 5px;">
                                     <a href="#">
                                         <div class="card bg-primary border-primary">
                                             <div class="card-body">
@@ -129,7 +129,7 @@
 
                                 </div> <!-- end col-->
 
-                                <div class="col-6" style="padding-left: 5px;">
+                                <div class="col-4" style="padding-left: 5px;">
                                     <a href="#">
                                     <div class="card bg-success border-success">
                                         <div class="card-body">
@@ -147,6 +147,26 @@
                                     </div>
                                     </a>
                                 </div> <!-- end col-->
+
+                                <div class="col-4" style="padding-left: 5px;">
+                                    <a href="#">
+                                    <div class="card bg-success" style="background-color: #1c8034 !important;">
+                                        <div class="card-body">
+                                            <div class="mb-2">
+                                                <h5 class="card-title mb-0 text-white">จังหวัด (ไม่ซ้ำ)</h5>
+                                            </div>
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-8">
+                                                    <h2 class="d-flex align-items-center text-white mb-0">
+                                                        {{ agent.pv }}
+                                                    </h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </a>
+                                </div> <!-- end col-->
+
 
                                 <div class="col-4" style="padding-right: 5px;">
                                     <a href="#">
@@ -256,6 +276,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="mb-2 font-size-18">แผนที่แสดงจำนวน</h4>
+                                    <p>แสดงเฉพาะเอเจนที่ได้รับการอนุมัติแล้ว</p>
                                     <div id="map-container"></div>
                                 </div>
                             </div>
@@ -264,6 +285,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="mb-2 font-size-18">รายชื่อจังหวัดแสดงจำนวน</h4>
+                                    <p>แสดงเฉพาะเอเจนที่ได้รับการอนุมัติแล้ว</p>
                                     <div class="table-responsive">
                                         <table class="table mb-0">
                                             <thead>

@@ -17,7 +17,7 @@
     foreach ($count as $key => $value) {
         $api['province'][] = array('name' => $key, 'value' => (int) $value);
     }
-    $api['province_total'] = count($count);
+    $api['province_total'] = count($member);
 
     $prov = $db->get('a77_provinces');
     foreach ($prov as $value) {
