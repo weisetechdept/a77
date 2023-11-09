@@ -23,7 +23,42 @@
 
     $chk_family = $db_family->where('memb_people_id', $peopleId)->getOne('tpf_member');
 
-    if(!isset($chk_family)){
+    /* check agent */
+    $url = "https://qms-toyotaparagon.com/api/prg_salecar_history";
+
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+    $headers = array(
+        "Accept: application/json",
+        "Content-Type: application/json",
+    );
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+    $data = '
+    {
+        "strsearch" : '.$peopleId.'
+    }';
+
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+
+    //for debug only!
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+    $resp = curl_exec($curl);
+    curl_close($curl);
+
+    $results =json_decode($resp);
+    //print_r($resp);
+
+    $qm_status = $results[0]->salestatus;
+    //echo $qm_status;
+
+    /* insert */
+    if(!isset($chk_family) && $qm_status !== 'Sold'){
         $data = Array (
             "agen_first_name" => $first_name,
             "agen_last_name" => $last_name,
