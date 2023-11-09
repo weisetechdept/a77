@@ -85,6 +85,10 @@
         require 'admin/pages/agent_search.php';
     });
 
+    $router->get( '/admin/apv_agent', function() {
+        require 'admin/pages/apv_agent.php';
+    });
+
     $router->get( '/admin/sales/(.*)', function($id) {
         require 'admin/pages/sales_detail.php';
     });
