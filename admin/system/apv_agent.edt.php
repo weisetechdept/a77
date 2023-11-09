@@ -2,6 +2,9 @@
     session_start();
     require_once '../../db-conn.php';
     date_default_timezone_set("Asia/Bangkok");
+    if($_SESSION['a77in_admin'] !== true){
+        header('Location: /404');
+    }
 
     $request = json_decode(file_get_contents('php://input'));
     $checked = $request->checkedAgent;
