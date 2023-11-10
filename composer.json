@@ -2,8 +2,6 @@
     "require": {
         "thingengineer/mysqli-database-class": "dev-master",
         "bramus/router": "^1.6",
-        "shitric/cloudflare-images": "^1.0",
-        "verot/class.upload.php": "^2.1",
-        "google/cloud-vision": "^1.7"
+        "shitric/cloudflare-images": "^1.0"
     }
 }
