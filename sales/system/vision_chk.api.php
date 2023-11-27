@@ -91,8 +91,9 @@
         $data_name = '/'.$agent['agen_first_name'].'/';
         $name = preg_grep($data_name, $results);
 
-        $name_arr = explode(" ", $name[key($name)]);
-        if($name_arr[2] == $agent['agen_first_name'] && $name_arr[3] == $agent['agen_last_name']){
+        //$name_arr = explode(" ", $name[key($name)]);
+        //if($name_arr[2] == $agent['agen_first_name'] && $name_arr[3] == $agent['agen_last_name']){
+        if(count($name) > 0){
 
             $pid_arr = explode(" ", $results[0]);
             $id = substr($agent['agen_people_id'], 5, 5);
