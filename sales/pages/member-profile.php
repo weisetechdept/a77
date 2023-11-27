@@ -8,6 +8,7 @@
             header("Location: /404");
         }
     }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,6 +80,12 @@
             .swal-button--cancel {
                 color: #555;
                 background-color: #efefef;
+            }
+            .notice {
+                border: 1pt solid #FF0000;
+                color: #FF0000;
+                padding: 10px;
+                border-style: dashed;
             }
         </style>
     </head>
@@ -155,10 +162,9 @@
                                             <div class="form-group mt-3" v-if="status == '10'">
                                                 <h4 class="mb-2 font-size-18">จัดการข้อมูล</h4>
                                                 <div class="edit-warning mb-2">
-                                                    โปรดตรวจสอบข้อมูลให้ถูกต้อง หรืออัพโหลดเอกสารที่ถูกต้อง ชัดเจนก่อนการขออนุมัติใหม่
+                                                    โปรดตรวจสอบข้อมูลให้ถูกต้อง หรืออัพโหลดเอกสารที่ถูกต้อง ชัดเจนก่อนการขอตรวจสอบอีกครั้ง
                                                 </div>
                                                 <a :href="'/edit/'+id" type="submit" class="btn btn-outline-warning waves-effect waves-light mr-1">แก้ใข</a>
-                                                <button type="submit" @click="sendStatus" class="btn btn-success waves-effect waves-light">ขออนุมันติ</butoon>
                                               
                                             </div>
                                         </div>
@@ -169,28 +175,82 @@
                         
                       </div>
 
+                      <div class="row">
+                      <div class="col-lg-4 col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="edit-warning mb-2">
+                                        ประกาศ : ระบบยืนยันตัวตนจะเปิดให้บริการอีกครั้ง วันที่ 1 ธันวาคม 2566
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
 
+
+<?php if($_GET['test'] == '1474413') { ?>
                         <div class="row">
                             <div class="col-lg-4 col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="mb-2 font-size-18">อัพโหลดเอกสาร</h4>
                                         <div id="form">
-                                          <form @submit.prevent="sendData">
-                                                <div class="form-group">
-                                                    <input type="file" name="file_upload" id="file_upload" @change="onFileChange">
+                                        <div v-if="verify.status == '1'">
+                                            <h4 class="mb-2 font-size-18">เอกสารยืนยันตัวตน</h4>
+                                            <img :src="verify.img_path" style="width:100%; height:270px; object-fit: cover;">
+                                            <p>อัพโหลดเมื่อ : {{ verify.datetime }}</p>
+                                            <div class="mt-3" v-if="verify.agent_status !== '2'">
+                                                <button type="button" class="btn btn-success waves-effect waves-light mr-1" @click="sendStatus()" data-toggle="modal" data-target="#exampleModal">ตรวจสอบ</button> <button type="button" class="btn btn-outline-danger waves-effect waves-light mr-1" @click="sendDelete()" data-toggle="modal" data-target="#exampleModal">ลบ</button>
+                                            </div>
+                                        </div>
+                                            <div v-else>
+                                                <h4 class="mb-2 font-size-18">อัพโหลดเอกสารยืนยันเอเจน</h4>
+                                                <div class="notice mb-3">
+                                                    <p>โปรดอัพโหลดเอกสารยืนยันตัวตนของเอเจนโดยอัพโหลดรุปบัตรประชาชนที่มีชื่อ นามสกุล เลขบัตร ปชช. และจังหวัดเดียวกับที่ลงทะเบียนไว้เท่านั้น</p>
+                                                    <p class="mb-0"><b>หมายเหตุ :</b> ต้องเป็นรูปบัตร ปชช. เต็มรูป ด้านหน้าเท่านั้น รูปคมชัดไม่มีสิ่งบดบังตัวเลขและตัวอักษร</p>
                                                 </div>
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">อัพโหลด</button>
-                                                </div>
-                                          </form>
-                                      </div>
+                                                <p><img src="/assets/images/license-card.png" style="width:100%; padding: 15px 30px;"></p>
+                                                <form @submit.prevent="verifyData">
+                                                        <div class="form-group">
+                                                            <input type="file" name="file_upload" id="file_upload" @change="onFileChange">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-primary waves-effect waves-light">อัพโหลด</button>
+                                                        </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
 
+
+                        <div class="row">
+                            <div class="col-lg-4 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                    <div id="form">
+                                       
+                                            <h4 class="mb-2 font-size-18">อัพโหลดเอกสารทั่วไป</h4>
+                                          
+                                                <form @submit.prevent="sendData">
+                                                        <div class="form-group">
+                                                            <input type="file" name="file_upload" id="file_upload" @change="onFileChange">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-primary waves-effect waves-light">อัพโหลด</button>
+                                                        </div>
+                                                </form>
+                                            
+                                            </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+<?php } ?>
                         <div id="docs">
                             <div class="row" v-for="docs in img">
                                 <div class="col-lg-4 col-md-12">
@@ -265,10 +325,99 @@
                     el: '#form',
                     data () {
                         return {
-                            file_upload: null
+                            file_upload: null,
+                            verify: '',
                         }
                     },
+                    mounted () {
+                        axios.get('/sales/system/verify.api.php?id=<?php echo $m_id; ?>')
+                          .then(response => (
+                                //console.log(response.data.docs),
+                              this.verify = response.data.docs
+                        ))
+                    },
                     methods: {
+                        sendDelete() {
+                            swal({
+                                title: 'คุณแน่ใจหรือไม่ ?',
+                                text: "คุณต้องการลบเอกสารยืนยันใช่หรือไม่ โปรดตรวจสอบข้อมูลให้ถูกต้อง",
+                                icon: "warning",
+                                buttons: {
+                                    cancel: "ยกเลิก",
+                                    confirm: {
+                                        text: "ดำเนินการต่อ",
+                                    }
+                                },
+                                dangerMode: true
+                            }).then((submit) => {
+
+                                axios.post('/sales/system/verify.del.php',{
+                                    img_id: this.verify.id,
+                                }).then(res => {
+                                   //console.log(res.data);
+                                   if(res.data.status == 200) 
+                                        swal("สำเร็จ", "ทำรายการสำเร็จ", "success",{ 
+                                            button: "ตกลง"
+                                        }).then((value) => {
+                                            location.reload(true)
+                                        });
+                                    if(res.data.status == 400) 
+                                        swal("เกิดข้อผิดพลาดบางอย่าง", "อาจมีบางอย่างผิดปกติ (error : 400)", "warning",{ 
+                                            button: "ตกลง"
+                                        }
+                                    );
+                                });
+                                
+                            })
+
+                        },
+                        sendStatus() {
+                            swal({
+                                title: 'คุณแน่ใจหรือไม่ ?',
+                                text: "คุณต้องการขออนุมัติใหม่ใช่หรือไม่ โปรดตรวจสอบข้อมูลให้ถูกต้อง",
+                                icon: "warning",
+                                buttons: {
+                                    cancel: "ยกเลิก",
+                                    confirm: {
+                                        text: "ดำเนินการต่อ",
+                                    }
+                                },
+                                dangerMode: true
+                            }).then((submit) => {
+                                
+                                if(submit) {
+                                    axios.post('/sales/system/vision_chk.api.php',{
+                                        img_id: this.verify.id,
+                                    }).then(res => {
+                                        console.log(res.data);
+                                        if(res.data.status == 200) 
+                                            swal("สำเร็จ", "ทำรายการสำเร็จ", "success",{ 
+                                                button: "ตกลง"
+                                            }).then((value) => {
+                                                location.reload(true)
+                                            });
+                                        if(res.data.status == 400)
+                                            swal("เกิดข้อผิดพลาดบางอย่าง", res.data.message , "warning",{ 
+                                                button: "ตกลง"
+                                            }).then((value) => {
+                                                location.reload(true)
+                                            });
+
+                                        if(res.data.status == 505)
+                                            swal("เกิดข้อผิดพลาดบางอย่าง", res.data.message, "warning",{ 
+                                                button: "ตกลง"
+                                            }).then((value) => {
+                                                location.reload(true)
+                                            });
+
+                                    })
+                                }
+                                
+                            })
+
+                            
+                        },
+                        
                         onFileChange(e) {
                             this.file_upload = e.target.files[0];
                         },
@@ -331,6 +480,66 @@
                             }
 
                             
+                        },
+                        verifyData(){
+
+                            var a = this.file_upload;
+                            if ((a == null || a == "")) {
+                                swal("ไม่สามารถทำรายการได้", "โปรดเลือกไฟล์เอกสารยืนยันตัวตน", "warning",{ 
+                                        button: "ตกลง"
+                                    }
+                                );
+                            } else {
+                                var formData = new FormData();
+                                formData.append('file_upload', this.file_upload);
+
+                                swal({
+                                    title: "กำลังอัพโหลด...",
+                                    text: "โปรดรอสักครู่ ระบบกำลังอัพโหลดเอกสารของคุณ",
+                                    icon: "info",
+                                    buttons: false,
+                                    closeOnClickOutside: false,
+                                    closeOnEsc: false
+                                });
+
+                                axios.post('/sales/system/cfimg.api.php', formData, {
+                                    headers: {
+                                        'Content-Type': 'multipart/form-data'
+                                    }
+                                }).then(res => {
+                                var cfimg_id =  res.data.result.id;
+                                var cfimg_link_500 =  res.data.result.variants[0];
+                                var cfimg_link =  res.data.result.variants[1];
+
+                                if(res.data.success == true) 
+                                    axios.post('/sales/system/cfimg_verify.api.php',{
+                                        aimg_img_id: cfimg_id,
+                                        aimg_link:  cfimg_link,
+                                        aimg_link_500: cfimg_link_500,
+                                        aimg_parent: <?php echo $m_id; ?>
+                                    }).then(res => {
+                                        if(res.data.status == 200) 
+                                            swal("สำเร็จ", "อัพโหลดเอกสารสำเร็จ", "success",{ 
+                                                button: "ตกลง"
+                                            }).then((value) => {
+                                                location.reload(true)
+                                            });
+                                        if(res.data.status == 400) 
+                                            swal("ทำรายการไม่สำเร็จ", "อัพโหลดเอกสารไม่สำเร็จ อาจมีบางอย่างผิดปกติ (error : 400)", "warning",{ 
+                                                button: "ตกลง"
+                                            }
+                                        );
+                                    });
+
+                                if(res.data.success == false) 
+                                    swal("ทำรายการไม่สำเร็จ", "อัพโหลดเอกสารไม่สำเร็จ อาจมีบางอย่างผิดปกติ", "warning",{ 
+                                        button: "ตกลง"
+                                    }
+                                );
+
+                                });
+                            }
+                            
                         }
                     }
                 });
@@ -389,42 +598,7 @@
                             })
                     },
                     methods: {
-                        sendStatus() {
-
-                            swal({
-                                title: 'คุณแน่ใจหรือไม่ ?',
-                                text: "คุณต้องการขออนุมัติใหม่ใช่หรือไม่ โปรดตรวจสอบข้อมูลให้ถูกต้อง",
-                                icon: "warning",
-                                buttons: {
-                                    cancel: "ยกเลิก",
-                                    confirm: {
-                                        text: "ดำเนินการต่อ",
-                                    }
-                                },
-                                dangerMode: true
-                            }).then((submit) => {
-
-                                if(submit) {
-                                    axios.get('/sales/system/sendcheck.edt.php?u=<?php echo $m_id; ?>')
-                                    .then(response => {
-                                        if(response.data.status == 200) 
-                                            swal("สำเร็จ", "ทำรายการสำเร็จ", "success",{ 
-                                                button: "ตกลง"
-                                            }).then((value) => {
-                                                location.reload(true)
-                                            });
-                                        if(response.data.status == 404) 
-                                            swal("เกิดข้อผิดพลาดบางอย่าง", "อาจมีบางอย่างผิดปกติ (error : 404)", "warning",{ 
-                                                button: "ตกลง"
-                                            }
-                                        );
-                                    })
-                                }
-                                
-                            })
-
-                            
-                        }
+                        
                     }
                 });
 

@@ -33,22 +33,7 @@
         $id = $db->insert ('a77_agent_img', $data);
         if ($id){
 
-            $chk = $db->where('agen_id',$agrnt_id)->getOne('a77_agent');
-            //Update Status
-            if($chk['agen_status'] == '0'){
-                $data = Array (
-                    'agen_status' => '1',
-                );
-                $db->where ('agen_id', $agrnt_id);
-                if ($db->update ('a77_agent', $data)){
-                    echo json_encode(array('status' => '200'));
-                } else {
-                    echo json_encode(array('status' => '400'));
-                }
-
-            } else {
-                echo json_encode(array('status' => '200'));
-            }
+            echo json_encode(array('status' => '200'));
             
         } else {
             echo json_encode(array('status' => '400'));
