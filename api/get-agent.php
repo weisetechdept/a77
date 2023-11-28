@@ -25,18 +25,18 @@
 
         if($chk['agen_status'] == '2'){
             $s_status = 'approve';
+
+            $img = $db->where('aimg_parent',$chk['agen_id'])->get('a77_agent_img');
+            foreach($img as $i){
+                $img_arr[] = $i['aimg_link'];
+            }
+            $api = array('first_name' => $chk['agen_first_name'],'last_name' => $chk['agen_last_name'],'gender' => $chk['agen_gender'],'province' => $chk['name_in_thai'],'livein' => null, 'status' => $s_status, 'regis_date' => $chk['agen_datetime'], 'memo' => array(array('campaign' => 'A77-'.count($pv_uni), 'end_date' => '2012-12-31 23:59:59')), 'docs_img' => $img_arr,'sale_owner' => $sale['first_name'].' '.$sale['last_name']);
+            echo json_encode(array('status' => '200', 'message' => 'success', 'data' => $api));
+            
         } else {
-            $s_status = 'reject';
+            echo json_encode(array('status' => '404', 'message' => 'data not found'));
         }
 
-        $img = $db->where('aimg_parent',$chk['agen_id'])->get('a77_agent_img');
-        foreach($img as $i){
-            $img_arr[] = $i['aimg_link'];
-        }
-
-        $api = array('first_name' => $chk['agen_first_name'],'last_name' => $chk['agen_last_name'],'gender' => $chk['agen_gender'],'province' => $chk['name_in_thai'],'livein' => null, 'status' => $s_status, 'regis_date' => $chk['agen_datetime'], 'memo' => array(array('campaign' => 'A77-'.count($pv_uni), 'end_date' => '2012-12-31 23:59:59')), 'docs_img' => $img_arr,'sale_owner' => $sale['first_name'].' '.$sale['last_name']);
-
-        echo json_encode(array('status' => '200', 'message' => 'success', 'data' => $api));
     } else {
         echo json_encode(array('status' => '404', 'message' => 'data not found'));
     }
