@@ -13,8 +13,13 @@
     $db->where("a.agen_people_id", $request);
     $chk = $db->getOne ("a77_provinces p", null, "a.agen_id,a.agen_first_name, a.agen_last_name, p.name_in_thai, a.agen_status, a.agen_datetime,a.agen_gender, a.agen_parent, a.agen_tel");
 
-
     $sale = $db_nms->where('id',$chk['agen_parent'])->getOne('db_member');
+
+    $agt = $db->where('agen_parent', $chk['agen_parent'])->where('agen_status',2)->get('a77_agent');
+    foreach ($agt as $value) {
+        $pv[] = $value['agen_province'];
+    }
+    $pv_uni = array_unique($pv);
 
     if(!empty($chk['agen_id'])){
 
@@ -29,7 +34,7 @@
             $img_arr[] = $i['aimg_link'];
         }
 
-        $api = array('first_name' => $chk['agen_first_name'],'last_name' => $chk['agen_last_name'],'gender' => $chk['agen_gender'],'province' => $chk['name_in_thai'],'livein' => null, 'status' => $s_status, 'regis_date' => $chk['agen_datetime'], 'memo' => array(array('campaign' => 'A77-', 'end_date' => '2012-12-31 23:59:59')), 'docs_img' => $img_arr,'sale_owner' => $sale['first_name'].' '.$sale['last_name']);
+        $api = array('first_name' => $chk['agen_first_name'],'last_name' => $chk['agen_last_name'],'gender' => $chk['agen_gender'],'province' => $chk['name_in_thai'],'livein' => null, 'status' => $s_status, 'regis_date' => $chk['agen_datetime'], 'memo' => array(array('campaign' => 'A77-'.count($pv_uni), 'end_date' => '2012-12-31 23:59:59')), 'docs_img' => $img_arr,'sale_owner' => $sale['first_name'].' '.$sale['last_name']);
 
         echo json_encode(array('status' => '200', 'message' => 'success', 'data' => $api));
     } else {
