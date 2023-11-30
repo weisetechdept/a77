@@ -387,7 +387,7 @@
                         this.upload = response.data.counter.upload,
                         this.active = response.data.counter.active,
                         this.pending = response.data.counter.pending,
-                        this.reject = response.data.counter.reject
+                        this.reject = response.data.counter.reject,
                         this.unique_active = response.data.counter.unique_active
                 ))
             }
