@@ -70,6 +70,12 @@
             .card-topic {
                 padding: 0.5rem 0 0 1rem;
             }
+            .bg-pv {
+            background-color: #14872f !important;
+            }
+            .border-pv {
+                border-color: #14872f !important;
+            }
         </style>
     </head>
 
@@ -100,6 +106,7 @@
                                 </div>
                             </div>
                         </div>
+                        
 
                         <div class="row">
                             <div class="col-lg-4 col-md-12">
@@ -112,6 +119,22 @@
                             </div>
 
                             <div class="col-lg-4 col-md-12" id="map">
+
+                                <div class="card bg-pv border-pv">
+                                    <div class="card-body">
+                                        <div class="mb-2">
+                                            <h5 class="card-title mb-0 text-white">จังหวัดทั้งหมด</h5>
+                                        </div>
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-8">
+                                                <h2 class="d-flex align-items-center text-white mb-0">
+                                                    {{ count }}
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="mb-2 font-size-18">จำนวนสมาชิก จังหวัด</h4>
@@ -227,7 +250,8 @@
                 data() {
                     return {
                         agent_data: [],
-                        sname: ''
+                        sname: '',
+                        count: ''
                     }
                 },
                 mounted() {
@@ -237,6 +261,7 @@
                             console.log(response.data);
                             this.agent_data = response.data.province;
                             this.sname = response.data.sales.name;
+                            this.count = response.data.sales.count;
 
                             $('#map-container').highcharts('Map', {
                                 chart: {
