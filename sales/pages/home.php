@@ -101,7 +101,7 @@
                                 <div class="card bg-primary border-primary">
                                     <div class="card-body">
                                         <div class="mb-2">
-                                            <h5 class="card-title mb-0 text-white">สมาชิกทั้งหมด</h5>
+                                            <h5 class="card-title mb-0 text-white">ทั้งหมด</h5>
                                         </div>
                                         <div class="row d-flex align-items-center">
                                             <div class="col-8">
@@ -140,7 +140,7 @@
                             <div class="card bg-pv border-pv">
                                 <div class="card-body">
                                     <div class="mb-2">
-                                        <h5 class="card-title mb-0 text-white">จังหวัด (ไม่ซ้ำ)</h5>
+                                        <h5 class="card-title mb-0 text-white">จังหวัด</h5>
                                     </div>
                                     <div class="row d-flex align-items-center">
                                         <div class="col-8">
