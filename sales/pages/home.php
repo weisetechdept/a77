@@ -58,6 +58,12 @@
         .card {
             margin-bottom: 10px;
         }
+        .bg-pv {
+            background-color: #14872f !important;
+        }
+        .border-pv {
+            border-color: #14872f !important;
+        }
     </style>
 </head>
 
@@ -90,7 +96,7 @@
                     
                     <div class="row mb-1" id="counter">
 
-                        <div class="col-6" style="padding-right: 5px;">
+                        <div class="col-4" style="padding-right: 5px;">
                             <a href="/agent/all">
                                 <div class="card bg-primary border-primary">
                                     <div class="card-body">
@@ -110,7 +116,7 @@
 
                         </div> <!-- end col-->
 
-                        <div class="col-6" style="padding-left: 5px;">
+                        <div class="col-4" style="padding-left: 5px;">
                             <a href="/agent/active">
                             <div class="card bg-success border-success">
                                 <div class="card-body">
@@ -127,6 +133,24 @@
                                 </div>
                             </div>
                             </a>
+                        </div> <!-- end col-->
+
+                        <div class="col-4" style="padding-left: 5px;">
+                           
+                            <div class="card bg-pv border-pv">
+                                <div class="card-body">
+                                    <div class="mb-2">
+                                        <h5 class="card-title mb-0 text-white">จังหวัด (ไม่ซ้ำ)</h5>
+                                    </div>
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-8">
+                                            <h2 class="d-flex align-items-center text-white mb-0">
+                                                {{ unique_active }}
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div> <!-- end col-->
 
                         <div class="col-4" style="padding-right: 5px;">
@@ -351,7 +375,8 @@
                     upload: '',
                     active: '',
                     pending: '',
-                    reject: ''
+                    reject: '',
+                    unique_active: ''
                 }
             },
             mounted () {
@@ -363,6 +388,7 @@
                         this.active = response.data.counter.active,
                         this.pending = response.data.counter.pending,
                         this.reject = response.data.counter.reject
+                        this.unique_active = response.data.counter.unique_active
                 ))
             }
         });

@@ -33,9 +33,17 @@
     $agent_all = $db->where('agen_parent',$userid)->getValue('a77_agent',"count(*)");
     $agent_upload = $db->where('agen_parent',$userid)->where('agen_status',0)->getValue('a77_agent',"count(*)");
     $agent_wait = $db->where('agen_parent',$userid)->where('agen_status',1)->getValue('a77_agent',"count(*)");
-    $agent_active = $db->where('agen_parent',$userid)->where('agen_status',2)->getValue('a77_agent',"count(*)");
     $agent_reject = $db->where('agen_parent',$userid)->where('agen_status',10)->getValue('a77_agent',"count(*)");
 
-    $api['counter'] = array('all' => $agent_all, 'upload' => $agent_upload, 'active' => $agent_active, 'pending' => $agent_wait, 'reject' => $agent_reject);
+    $active = $db->where('agen_parent',$userid)->where('agen_status',2)->get('a77_agent');
+    $agent_active = count($active);
+
+    foreach ($active as $value) {
+        $act[] = $value['agen_province'];
+    }
+    $act_uni = array_unique($act);
+    $agent_unique_active = count($act_uni);
+
+    $api['counter'] = array('all' => $agent_all, 'upload' => $agent_upload, 'active' => $agent_active,'unique_active' => $agent_unique_active, 'pending' => $agent_wait, 'reject' => $agent_reject);
 
     print_r(json_encode($api));
