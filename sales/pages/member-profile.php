@@ -180,29 +180,35 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div id="form">
-                                        <div v-if="verify.status == '1'">
-                                            <h4 class="mb-2 font-size-18">เอกสารยืนยันตัวตน</h4>
-                                            <img :src="verify.img_path" style="width:100%; height:270px; object-fit: cover;">
-                                            <p>อัพโหลดเมื่อ : {{ verify.datetime }}</p>
-                                            <div class="mt-3" v-if="verify.agent_status !== '2'">
-                                                <button type="button" class="btn btn-success waves-effect waves-light mr-1" @click="sendStatus()" data-toggle="modal" data-target="#exampleModal">ตรวจสอบ</button> <button type="button" class="btn btn-outline-danger waves-effect waves-light mr-1" @click="sendDelete()" data-toggle="modal" data-target="#exampleModal">ลบ</button>
-                                            </div>
-                                        </div>
-                                            <div v-else-if="verify.agent_status !== '2'">
-                                                <h4 class="mb-2 font-size-18">อัพโหลดเอกสารยืนยันเอเจน</h4>
-                                                <div class="notice mb-3">
-                                                    <p>โปรดอัพโหลดเอกสารยืนยันตัวตนของเอเจนโดยอัพโหลดรุปบัตรประชาชนที่มีชื่อ นามสกุล เลขบัตร ปชช. และจังหวัดเดียวกับที่ลงทะเบียนไว้เท่านั้น</p>
-                                                    <p class="mb-0"><b>หมายเหตุ :</b> ต้องเป็นรูปบัตร ปชช. เต็มรูป ด้านหน้าเท่านั้น รูปคมชัดไม่มีสิ่งบดบังตัวเลขและตัวอักษร</p>
+                                            <div v-if="verify.status == '1'">
+                                                <h4 class="mb-2 font-size-18">เอกสารยืนยันตัวตน</h4>
+                                                <img :src="verify.img_path" style="width:100%; height:270px; object-fit: cover;">
+                                                <p>อัพโหลดเมื่อ : {{ verify.datetime }}</p>
+                                                <div class="mt-3" v-if="verify.agent_status !== '2'">
+                                                    <button type="button" class="btn btn-success waves-effect waves-light mr-1" @click="sendStatus()" data-toggle="modal" data-target="#exampleModal">ตรวจสอบ</button> <button type="button" class="btn btn-outline-danger waves-effect waves-light mr-1" @click="sendDelete()" data-toggle="modal" data-target="#exampleModal">ลบ</button>
                                                 </div>
-                                                <p><img src="/assets/images/license-card.png" style="width:100%; padding: 15px 30px;"></p>
-                                                <form @submit.prevent="verifyData">
-                                                        <div class="form-group">
-                                                            <input type="file" name="file_upload" id="file_upload" @change="onFileChange">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <button type="submit" class="btn btn-primary waves-effect waves-light">อัพโหลด</button>
-                                                        </div>
-                                                </form>
+                                            </div>
+                                            <div v-else>
+                                                <div v-if="verify.agent_status !== '2'">
+                                                    <h4 class="mb-2 font-size-18">อัพโหลดเอกสารยืนยันเอเจน</h4>
+                                                    <div class="notice mb-3">
+                                                        <p>โปรดอัพโหลดเอกสารยืนยันตัวตนของเอเจนโดยอัพโหลดรุปบัตรประชาชนที่มีชื่อ นามสกุล เลขบัตร ปชช. และจังหวัดเดียวกับที่ลงทะเบียนไว้เท่านั้น</p>
+                                                        <p class="mb-0"><b>หมายเหตุ :</b> ต้องเป็นรูปบัตร ปชช. เต็มรูป ด้านหน้าเท่านั้น รูปคมชัดไม่มีสิ่งบดบังตัวเลขและตัวอักษร</p>
+                                                    </div>
+                                                    <p><img src="/assets/images/license-card.png" style="width:100%; padding: 15px 30px;"></p>
+                                                    <form @submit.prevent="verifyData">
+                                                            <div class="form-group">
+                                                                <input type="file" name="file_upload" id="file_upload" @change="onFileChange">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <button type="submit" class="btn btn-primary waves-effect waves-light">อัพโหลด</button>
+                                                            </div>
+                                                    </form>
+                                                </div>
+                                                <div v-else>
+                                                    <p class="mb-2 font-size-18">ยืนยันตัวตนเรียบร้อยแล้ว</p>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
