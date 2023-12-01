@@ -188,7 +188,7 @@
                                                 <button type="button" class="btn btn-success waves-effect waves-light mr-1" @click="sendStatus()" data-toggle="modal" data-target="#exampleModal">ตรวจสอบ</button> <button type="button" class="btn btn-outline-danger waves-effect waves-light mr-1" @click="sendDelete()" data-toggle="modal" data-target="#exampleModal">ลบ</button>
                                             </div>
                                         </div>
-                                            <div v-else>
+                                            <div v-else-if="verify.agent_status !== '2'">
                                                 <h4 class="mb-2 font-size-18">อัพโหลดเอกสารยืนยันเอเจน</h4>
                                                 <div class="notice mb-3">
                                                     <p>โปรดอัพโหลดเอกสารยืนยันตัวตนของเอเจนโดยอัพโหลดรุปบัตรประชาชนที่มีชื่อ นามสกุล เลขบัตร ปชช. และจังหวัดเดียวกับที่ลงทะเบียนไว้เท่านั้น</p>
