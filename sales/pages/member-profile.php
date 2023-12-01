@@ -187,8 +187,6 @@
                         </div>
                       </div>
 
-
-<?php if($_GET['test'] == '1474413') { ?>
                         <div class="row">
                             <div class="col-lg-4 col-md-12">
                                 <div class="card">
@@ -250,7 +248,7 @@
                             </div>
 
                         </div>
-<?php } ?>
+
                         <div id="docs">
                             <div class="row" v-for="docs in img">
                                 <div class="col-lg-4 col-md-12">
