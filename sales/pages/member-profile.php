@@ -175,18 +175,6 @@
                         
                       </div>
 
-                      <div class="row">
-                      <div class="col-lg-4 col-md-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="edit-warning mb-2">
-                                        ประกาศ : ระบบยืนยันตัวตนจะเปิดให้บริการอีกครั้ง วันที่ 1 ธันวาคม 2566
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-
                         <div class="row">
                             <div class="col-lg-4 col-md-12">
                                 <div class="card">
