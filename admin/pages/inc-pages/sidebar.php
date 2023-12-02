@@ -21,6 +21,7 @@
                         <li><a href="/admin/agent_search">ค้นหาเอเจน</a></li>
                     </ul>
                     <li><a href="/admin/apv_agent" class="waves-effect"><i class="feather-clipboard"></i><span>ขออนุมัติสมาชิก</span></a></li>
+                    <li><a href="/admin/randchk_agent" class="waves-effect"><i class="feather-clipboard"></i><span>เช็คสมาชิกอนุมัติ</span></a></li>
                 </li>
                 <!--
                 <li><a href="/admin/extension" class=" waves-effect"><i class="feather-box"></i><span>ตรวจสอบ</span></a></li>

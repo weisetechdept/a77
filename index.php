@@ -81,6 +81,10 @@
         require 'admin/pages/home.php';
     });
 
+    $router->get( '/admin/randchk-agent', function() {
+        require 'admin/pages/rand_check_agent.php';
+    });
+
     $router->get( '/admin/agent_search', function() {
         require 'admin/pages/agent_search.php';
     });
