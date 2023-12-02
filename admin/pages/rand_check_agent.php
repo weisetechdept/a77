@@ -114,7 +114,6 @@
                                     <table class="table table-bordered table-hover dt-responsive nowrap w-100">
                                         <thead>
                                             <tr>
-                                                <th width="50px">เลือก</th>
                                                 <th width="190px">ชื่อ-นามสกุล</th>
                                                 <th width="150px">เลขบัตร ปชช.</th>
                                                 <th width="150px">จังหวัด</th>
@@ -123,7 +122,6 @@
                                         </thead>
                                         <tbody>
                                             <tr v-for="agn in agent">
-                                                <td style="text-align: center;"><input type="checkbox" v-model="checkedAgent" :value="agn.id"></td>
                                                 <td>{{ agn.name }}</td>
                                                 <td>{{ agn.thai_id }}</td>
                                                 <td>{{ agn.province }}</td>

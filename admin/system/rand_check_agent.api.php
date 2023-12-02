@@ -9,7 +9,7 @@
 
     $db->join('a77_provinces p','p.code=a.agen_province','LEFT');
     $db->where('a.agen_status',2);
-    $agent = $db->get('a77_agent a',null,'agen_id,agen_first_name,agen_last_name,name_in_thai,agen_people_id');
+    $agent = $db->get('a77_agent a',15,'agen_id,agen_first_name,agen_last_name,name_in_thai,agen_people_id');
 
     foreach ($agent as $value) {
 
