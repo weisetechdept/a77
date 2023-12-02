@@ -80,7 +80,7 @@
         
         $api = array('status' => 200);
         $api['sales'] = array('id' => $sales['id'],'name' => $sales['first_name'].' '.$sales['last_name'],'all_agent' => count($ct),'pv' => count($agn),'team' => find_team($sales_id));
-        $api['agent'] = array('id' => $agent['agen_id'],'name' => $agent['agen_first_name'].' '.$agent['agen_last_name'],'gender' => $gender,'people_id' => $agent['agen_people_id'], 'tel' => '0'.$agent['agen_tel'],'province' => $pv['name_in_thai'],'check_qm' => $old_cust, 'status' => $agent['agen_status']);
+        $api['agent'] = array('id' => $agent['agen_id'],'name' => $agent['agen_first_name'].' '.$agent['agen_last_name'],'gender' => $gender,'people_id' => $agent['agen_people_id'], 'tel' => '0'.$agent['agen_tel'],'province' => $pv['name_in_thai'],'check_qm' => $old_cust, 'status' => $agent['agen_status'],'date_reg' => date('d/m/Y',strtotime($agent['agen_datetime'])));
 
         $img = $db->where('aimg_parent',$agent['agen_id'])->get('a77_agent_img');
         foreach ($img as $img_value) {

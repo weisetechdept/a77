@@ -324,8 +324,8 @@
                     mounted () {
                         axios.get('/sales/system/verify.api.php?id=<?php echo $m_id; ?>')
                           .then(response => (
-                                //console.log(response.data.docs),
-                              this.verify = response.data.docs
+                            console.log(response.data.docs),
+                            this.verify = response.data.docs
                         ))
                     },
                     methods: {

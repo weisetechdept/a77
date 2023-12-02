@@ -146,6 +146,10 @@
                                                         <span v-if="agent.status == '2'"><span class="badge badge-success badge-pill">อนุมัติแล้ว</span></span>
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <th scope="row">วันที่สมัคร</th>
+                                                    <td>{{ agent.date_reg }}</td>
+                                                </tr>
                                             </tbody>
                                         </table>
 
