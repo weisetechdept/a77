@@ -144,7 +144,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>ที่อยู่ปัจจุบัน</td>
-                                                        <td> <a :href="'/livein/'+id" type="button" class="btn btn-sm btn-light waves-effect waves-light">แก้ใข</a></td>
+                                                        <td>{{ livein }} <a :href="'/livein/'+id" type="button" class="btn btn-sm btn-light waves-effect waves-light">แก้ใข</a></td>
                                                     </tr>
                                                     <tr>
                                                         <td>เบอร์โทรศัพท์</td>
@@ -569,6 +569,7 @@
                             af_name: '',
                             gender: '',
                             province: '',
+                            livein: '',
                             thai_id: '',
                             phone: '',
                             status: '',
@@ -589,6 +590,7 @@
                                 this.af_name = response.data.agent.name;
                                 this.gender = response.data.agent.gender;
                                 this.province = response.data.agent.province;
+                                this.livein = response.data.agent.livein;
                                 this.thai_id = response.data.agent.thai_id;
                                 this.status = response.data.agent.status;
                                 this.datetime = response.data.agent.datetime;
