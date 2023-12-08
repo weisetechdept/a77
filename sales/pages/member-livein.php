@@ -138,15 +138,20 @@
                                                     <tr>
                                                         <td>ที่อยู่ปัจจุบัน</td>
                                                         <td>
-                                                            <select v-model="spv" class="form-control">
-                                                                <option value="0">= กรุณาเลือกจังหวัด =</option>
-                                                                <option v-for="prov in pv" :value="prov.code">{{ prov.name }}</option>
-                                                            </select>
+                                                            <div v-if="livein == '0'">
+                                                                <select v-model="spv" class="form-control">
+                                                                    <option value="0">= กรุณาเลือกจังหวัด =</option>
+                                                                    <option v-for="prov in pv" :value="prov.code">{{ prov.name }}</option>
+                                                                </select>
+                                                            </div>
+                                                            <div v-else>
+                                                                {{ livein }}
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <div class="form-group mb-0">
+                                            <div v-if="livein == '0'" class="form-group mb-0">
                                                 <button type="submit" class="btn btn-warning waves-effect waves-light" @click="saveData()">บันทึก</button>
                                             </div>
                                         </div>
@@ -362,6 +367,7 @@
                         return {
                             id: '',
                             af_name: '',
+                            livein: '',
                             pv: [],
                             spv: 0
                         }
@@ -378,6 +384,7 @@
                                     });
                                 this.id = response.data.agent.id;
                                 this.af_name = response.data.agent.name;
+                                this.livein = response.data.agent.livein;
                                 axios.get('/sales/system/register.api.php')
                                 .then(response => (
                                     this.pv = response.data.province

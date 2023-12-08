@@ -32,9 +32,17 @@
         } else {
             $g = 'หญิง';
         }
+        if(empty($member['agen_livein'])){
+            $livepv = 0;
+        } else {
+            $lv_data = $db->where('code', $member['agen_livein'])->getOne('a77_provinces', null, 'name_in_thai');
+            $livepv = $lv_data['name_in_thai'];
+        }
+
         $api['agent'] = array('id' => $member['agen_id'],
             'name' => $member['agen_first_name'].' '.$member['agen_last_name'],
             'province' => $member['name_in_thai'],
+            'livein' => $livepv,
             'thai_id' => $thai_id,
             'gender' => $g,
             'phone' => '0'.$member['agen_tel'],
