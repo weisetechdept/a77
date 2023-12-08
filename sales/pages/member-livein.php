@@ -154,11 +154,18 @@
                                             <div v-if="livein == '0'" class="form-group mb-0">
                                                 <button type="submit" class="btn btn-warning waves-effect waves-light" @click="saveData()">บันทึก</button>
                                             </div>
+                                           
+                                                <div class="notice mt-3">
+                                                    <p class="mb-0">การบันทึกจังหวัดที่อยู่ปัจจุบันสามารถบันทึกได้เพียง 1 ครั้งเท่านั้น โปรดตรวจสอบข้อมูลให้ถูกต้องก่อนการบันทึก</p>
+                                                </div>
+                                       
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        
                         
                     </div>
 
