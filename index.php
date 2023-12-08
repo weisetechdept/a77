@@ -49,6 +49,10 @@
         require 'sales/pages/agent.php';
     });
 
+    $router->get( '/livein/(.*)', function($m_id) {
+        require 'sales/pages/member-livein.php';
+    });
+
     /* mgr */
 
     $router->get( '/mgr/home', function() {

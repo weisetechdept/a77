@@ -120,7 +120,7 @@
 
                         <div class="row">
 
-                            <div class="col-lg-4 col-md-12">
+                            <div class="col-lg-6 col-md-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="mb-2 font-size-18">ข้อมูลสมาชิก</h4>
@@ -141,6 +141,10 @@
                                                     <tr>
                                                         <td>จังหวัด</td>
                                                         <td>{{ province }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>ที่อยู่ปัจจุบัน</td>
+                                                        <td> <a :href="'/livein/'+id" type="button" class="btn btn-sm btn-light waves-effect waves-light">แก้ใข</a></td>
                                                     </tr>
                                                     <tr>
                                                         <td>เบอร์โทรศัพท์</td>
@@ -172,11 +176,14 @@
                                 </div>
                             </div>
                         </div>
+
+
+                        
                         
                       </div>
 
                         <div class="row">
-                            <div class="col-lg-4 col-md-12">
+                            <div class="col-lg-6 col-md-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <div id="form">
@@ -219,7 +226,7 @@
 
 
                         <div class="row">
-                            <div class="col-lg-4 col-md-12">
+                            <div class="col-lg-6 col-md-12">
                                 <div class="card">
                                     <div class="card-body">
                                     <div id="form">
@@ -245,7 +252,7 @@
 
                         <div id="docs">
                             <div class="row" v-for="docs in img">
-                                <div class="col-lg-4 col-md-12">
+                                <div class="col-lg-6 col-md-12">
                                     <div class="card">
                                         <div class="card-body">
                                             <img :src="docs.link_500" width="100%">

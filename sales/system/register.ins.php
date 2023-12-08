@@ -66,6 +66,7 @@
             "agen_people_id" => $peopleId,
             "agen_tel" => $tel,
             "agen_province" => $province,
+            'agen_livein' => '',
             "agen_parent" => $userid,
             "agen_status" => '0',
             "agen_datetime" => date("Y-m-d H:i:s")
