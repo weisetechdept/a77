@@ -65,8 +65,15 @@
         $agent_wait = $db->where('agen_parent',$sales_u)->where('agen_status',1)->getValue('a77_agent',"count(*)");
         $agent_active = $db->where('agen_parent',$sales_u)->where('agen_status',2)->getValue('a77_agent',"count(*)");
         $agent_reject = $db->where('agen_parent',$sales_u)->where('agen_status',10)->getValue('a77_agent',"count(*)");
+
+        $pv = $db->where('agen_parent',$sales_u)->get('a77_agent');
+        foreach ($pv as $value) {
+            $pv_all[] = $value['agen_province'];
+        }
+        $pv_allc = array_unique($pv_all);
+
     
-        $api['counter'] = array('name' => $sales_data['first_name'].' '.$sales_data['last_name'],'all' => $agent_all, 'upload' => $agent_upload, 'active' => $agent_active, 'pending' => $agent_wait, 'reject' => $agent_reject);
+        $api['counter'] = array('name' => $sales_data['first_name'].' '.$sales_data['last_name'],'all' => $agent_all, 'upload' => $agent_upload, 'active' => $agent_active, 'pv' => count($pv_allc), 'pending' => $agent_wait, 'reject' => $agent_reject);
     
 
     }  else {

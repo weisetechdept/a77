@@ -95,7 +95,7 @@
                             </div>
                         </div> <!-- end col-->
 
-                        <div class="col-6" style="padding-right: 5px;">
+                        <div class="col-4" style="padding-right: 5px;">
                             <div class="card bg-primary border-primary">
                                 <div class="card-body">
                                     <div class="mb-2">
@@ -112,7 +112,7 @@
                             </div>
                         </div> <!-- end col-->
 
-                        <div class="col-6" style="padding-left: 5px;">
+                        <div class="col-4" style="padding-left: 5px;">
                             <div class="card bg-success border-success">
                                 <div class="card-body">
                                     <div class="mb-2">
@@ -122,6 +122,23 @@
                                         <div class="col-8">
                                             <h2 class="d-flex align-items-center text-white mb-0">
                                                 {{ active }}
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- end col-->
+
+                        <div class="col-4" style="padding-left: 5px;">
+                            <div class="card bg-success border-success">
+                                <div class="card-body">
+                                    <div class="mb-2">
+                                        <h5 class="card-title mb-0 text-white">จังหวัด</h5>
+                                    </div>
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-8">
+                                            <h2 class="d-flex align-items-center text-white mb-0">
+                                                {{ pv }}
                                             </h2>
                                         </div>
                                     </div>
@@ -346,7 +363,8 @@
                     active: '',
                     pending: '',
                     reject: '',
-                    name: ''
+                    name: '',
+                    pv: ''
                 }
             },
             mounted () {
@@ -366,6 +384,7 @@
                             this.pending = response.data.counter.pending;
                             this.reject = response.data.counter.reject;
                             this.name = response.data.counter.name;
+                            this.pv = response.data.counter.pv;
                         }
                     });
             }
