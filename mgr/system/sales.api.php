@@ -66,7 +66,7 @@
         $agent_active = $db->where('agen_parent',$sales_u)->where('agen_status',2)->getValue('a77_agent',"count(*)");
         $agent_reject = $db->where('agen_parent',$sales_u)->where('agen_status',10)->getValue('a77_agent',"count(*)");
 
-        $pv = $db->where('agen_parent',$sales_u)->get('a77_agent');
+        $pv = $db->where('agen_parent',$sales_u)->where('agen_status',2)->get('a77_agent');
         foreach ($pv as $value) {
             $pv_all[] = $value['agen_province'];
         }
