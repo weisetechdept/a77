@@ -331,7 +331,6 @@
                     mounted () {
                         axios.get('/sales/system/verify.api.php?id=<?php echo $m_id; ?>')
                           .then(response => (
-                            console.log(response.data.docs),
                             this.verify = response.data.docs
                         ))
                     },
@@ -388,7 +387,6 @@
                                     axios.post('/sales/system/vision_chk.api.php',{
                                         img_id: this.verify.id,
                                     }).then(res => {
-                                        console.log(res.data);
                                         if(res.data.status == 200) 
                                             swal("สำเร็จ", "ทำรายการสำเร็จ", "success",{ 
                                                 button: "ตกลง"

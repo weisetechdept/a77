@@ -36,7 +36,11 @@
             
             $id = $db->insert ('a77_agent_img', $data);
             if ($id){
-                echo json_encode(array('status' => '200'));
+                $db->where('agen_id',$agrnt_id);
+                $db->update('a77_agent', array('agen_status' => '1'));
+                if($db->count > 0){
+                    echo json_encode(array('status' => '200'));
+                }
             } else {
 
                 echo json_encode(array('status' => '400'));

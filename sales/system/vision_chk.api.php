@@ -121,7 +121,7 @@
                             );
                         } else {
                             $db->where('agen_id',$agent['agen_id']);
-                            $db->update('a77_agent', array('agen_status' => 10));
+                            $db->update('a77_agent', array('agen_status' => '10'));
                             if($db->count > 0){
                                 $api = array(
                                     'status' => '400',
@@ -136,32 +136,48 @@
                         }
 
                     } else {
-                        $api = array(
-                            'status' => '400',
-                            'message' => 'ข้อมูลไม่ถูกต้อง อาจเกิดจากการถ่ายภาพไม่ชัดเจน หรือ ข้อมูลไม่ตรงกับที่ลงทะเบียนไว้ (ที่อยู่)'
-                        );
+                        $db->where('agen_id',$agent['agen_id']);
+                        $db->update('a77_agent', array('agen_status' => '10'));
+                        if($db->count > 0){
+                            $api = array(
+                                'status' => '400',
+                                'message' => 'ข้อมูลไม่ถูกต้อง อาจเกิดจากการถ่ายภาพไม่ชัดเจน หรือ ข้อมูลไม่ตรงกับที่ลงทะเบียนไว้'
+                            );
+                        }
                     }
 
                 } else {
-                    $api = array(
-                        'status' => '400',
-                        'message' => 'ข้อมูลไม่ถูกต้อง อาจเกิดจากการถ่ายภาพไม่ชัดเจน หรือ ข้อมูลไม่ตรงกับที่ลงทะเบียนไว้ (เลขบัตรประชาชน 2)'
-                    );
+                    $db->where('agen_id',$agent['agen_id']);
+                    $db->update('a77_agent', array('agen_status' => '10'));
+                    if($db->count > 0){
+                            $api = array(
+                                'status' => '400',
+                                'message' => 'ข้อมูลไม่ถูกต้อง อาจเกิดจากการถ่ายภาพไม่ชัดเจน หรือ ข้อมูลไม่ตรงกับที่ลงทะเบียนไว้'
+                            );
+                    }
                 }
 
             } else {
-                $api = array(
-                    'status' => '400',
-                    'message' => 'ข้อมูลไม่ถูกต้อง อาจเกิดจากการถ่ายภาพไม่ชัดเจน หรือ ข้อมูลไม่ตรงกับที่ลงทะเบียนไว้ (เลขบัตรประชาชน)'
-                );
+                $db->where('agen_id',$agent['agen_id']);
+                $db->update('a77_agent', array('agen_status' => '10'));
+                if($db->count > 0){
+                    $api = array(
+                        'status' => '400',
+                        'message' => 'ข้อมูลไม่ถูกต้อง อาจเกิดจากการถ่ายภาพไม่ชัดเจน หรือ ข้อมูลไม่ตรงกับที่ลงทะเบียนไว้'
+                    );
+                }
             }
 
 
         } else {
-            $api = array(
-                'status' => '400',
-                'message' => 'ข้อมูลไม่ถูกต้อง อาจเกิดจากการถ่ายภาพไม่ชัดเจน หรือ ข้อมูลไม่ตรงกับที่ลงทะเบียนไว้ (ชื่อ-นามสกุล)'
-            );
+            $db->where('agen_id',$agent['agen_id']);
+            $db->update('a77_agent', array('agen_status' => '10'));
+            if($db->count > 0){
+                $api = array(
+                    'status' => '400',
+                    'message' => 'ข้อมูลไม่ถูกต้อง อาจเกิดจากการถ่ายภาพไม่ชัดเจน หรือ ข้อมูลไม่ตรงกับที่ลงทะเบียนไว้'
+                );
+            }
         }
     } else {
         $api = array(
