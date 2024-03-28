@@ -3,11 +3,10 @@
     require_once '../../db-conn.php';
     date_default_timezone_set("Asia/Bangkok");
 
-    if(!isset($_SESSION['a77usrid'])){
-        header("Location: /404");
-    } elseif($_SESSION['a77permission'] != 'leader') {
+    if($_SESSION['a77permission'] != 'leader') {
         header("Location: /404");
     }
+    
     $userid = $_SESSION['a77usrid'];
 
     /* function */ 
@@ -25,6 +24,8 @@
 	}
 
     /* find member of group */ 
+
+    /*
     $team = $db_nms->get("db_user_group");
     $b = array(); // initialize the array
     foreach ($team as $value) {
@@ -36,8 +37,23 @@
             $teams[$group][] = $value['id']; // append the value to the end of the array
         }
     }
+    */
 
-    $leader = $teams[$userid];
+    function mgr($data){
+        global $db_nms;
+        $group = $db_nms->get('db_user_group');
+        foreach($group as $value){
+            $chk = in_array($data, json_decode($value['leader']));
+            if($chk){
+                foreach(json_decode($value['detail']) as $emp){
+                    $team[] = $emp;
+                }
+            }
+        }
+        return array_unique($team);
+    }
+
+    $leader = mgr($userid);
     $member = $db_nms->where('id',$leader,'IN')->get("db_user_group");
     $loop = array();
     foreach ($member as $value) {

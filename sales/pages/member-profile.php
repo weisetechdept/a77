@@ -414,7 +414,6 @@
 
                             
                         },
-                        
                         onFileChange(e) {
                             this.file_upload = e.target.files[0];
                         },
