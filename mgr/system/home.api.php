@@ -25,6 +25,7 @@
 	}
 
     /* find member of group */ 
+    /*
     $team = $db_nms->get("db_user_group");
     $b = array(); // initialize the array
     foreach ($team as $value) {
@@ -36,6 +37,9 @@
             $teams[$group][] = $value['id']; // append the value to the end of the array
         }
     }
+    */
+
+
     $leader = $teams[$userid];
     $member = $db_nms->where('id',$leader,'IN')->get("db_user_group");
     $loop = array();
@@ -45,7 +49,7 @@
 
     /* todo api */
     //print_r(array_unique($loop));
-    foreach (array_unique($loop) as $value) {
+    foreach (mgr($userid) as $value) {
 
         $sales = $db_nms->where('id',$value)->where('verify',1)->getOne("db_member");
         if($sales){
