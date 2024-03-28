@@ -52,20 +52,21 @@
         }
         return array_unique($team);
     }
-
+    /*
     $leader = mgr($userid);
     $member = $db_nms->where('id',$leader,'IN')->get("db_user_group");
     $loop = array();
     foreach ($member as $value) {
         $loop = array_merge($loop, json_decode($value['detail'], true));
     }
+    */
 
     /* todo api */
     $db->join("a77_agent a", "a.agen_province=p.code", "RIGHT");
     $db->where("a.agen_id",$_GET['u']);
     $member = $db->getOne ("a77_provinces p", null, "a.agen_first_name, a.agen_last_name, a.agen_people_id, p.name_in_thai, a.agen_status, a.agen_datetime,a.agen_id,a.agen_gender, a.agen_parent");
 
-    $chk = array_search($member['agen_parent'],$loop);
+    $chk = array_search($member['agen_parent'],mgr($userid));
 
     if(!empty($chk)){
         $thai_id = 'xxxxxxxx'.substr($member['agen_people_id'],8);
