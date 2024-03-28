@@ -37,14 +37,27 @@
             $teams[$group][] = $value['id']; // append the value to the end of the array
         }
     }
-    */
-
 
     $leader = $teams[$userid];
     $member = $db_nms->where('id',$leader,'IN')->get("db_user_group");
     $loop = array();
     foreach ($member as $value) {
         $loop = array_merge($loop, json_decode($value['detail'], true));
+    }
+    */
+
+    function mgr($data){
+        global $db_nms;
+        $group = $db_nms->get('db_user_group');
+        foreach($group as $value){
+            $chk = in_array($data, json_decode($value['leader']));
+            if($chk){
+                foreach(json_decode($value['detail']) as $emp){
+                    $team[] = $emp;
+                }
+            }
+        }
+        return array_unique($team);
     }
 
     /* todo api */
