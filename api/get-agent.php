@@ -61,7 +61,7 @@
         } else {
             $api_data = array(
                 'first_name' => $response_data['data']['name'],
-                'last_name' => null,
+                'last_name' => $response_data['data']['lastname'],
                 'gender' => null,
                 'province' => null,
                 'livein' => null,
